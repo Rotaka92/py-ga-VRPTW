@@ -6,13 +6,14 @@ from json import load
 from csv import DictWriter
 from deap import base, creator, tools
 from . import BASE_DIR
-from .utils import makeDirsForFile, exist
+from utils import makeDirsForFile, exist
 
 
 def ind2route(individual, instance):
+    #individual = pop[0]
     route = []
     vehicleCapacity = instance['vehicle_capacity']
-    deportDueTime =  instance['deport']['due_time']
+    deportDueTime =  instance['deport']['due_time']   #when the vehicle has to be back 'home'
     # Initialize a sub-route
     subRoute = []
     vehicleLoad = 0
@@ -66,6 +67,7 @@ def printRoute(route, merge=False):
 
 
 def evalVRPTW(individual, instance, unitCost=1.0, initCost=0, waitCost=0, delayCost=0):
+    #individual = pop[0]
     totalCost = 0
     route = ind2route(individual, instance)
     totalCost = 0
@@ -122,6 +124,7 @@ def mutInverseIndexes(individual):
 
 
 def gaVRPTW(instName, unitCost, initCost, waitCost, delayCost, indSize, popSize, cxPb, mutPb, NGen, exportCSV=False, customizeData=False):
+    #BASE_DIR = 'C:\\Users\\TapperR\\Desktop\\py-ga-VRPTW-master (2)\\py-ga-VRPTW-master'
     if customizeData:
         jsonDataDir = os.path.join(BASE_DIR,'data', 'json_customize')
     else:
@@ -131,14 +134,19 @@ def gaVRPTW(instName, unitCost, initCost, waitCost, delayCost, indSize, popSize,
         instance = load(f)
     creator.create('FitnessMax', base.Fitness, weights=(1.0,))
     creator.create('Individual', list, fitness=creator.FitnessMax)
+    #creator.Individual()
     toolbox = base.Toolbox()
     # Attribute generator
     toolbox.register('indexes', random.sample, range(1, indSize + 1), indSize)
+    #toolbox.indexes()
     # Structure initializers
     toolbox.register('individual', tools.initIterate, creator.Individual, toolbox.indexes)
+    #toolbox.individual()
     toolbox.register('population', tools.initRepeat, list, toolbox.individual)
+    #toolbox.population(n=popSize)
     # Operator registering
     toolbox.register('evaluate', evalVRPTW, instance=instance, unitCost=unitCost, initCost=initCost, waitCost=waitCost, delayCost=delayCost)
+    #toolbox.evaluate()
     toolbox.register('select', tools.selRoulette)
     toolbox.register('mate', cxPartialyMatched)
     toolbox.register('mutate', mutInverseIndexes)
