@@ -27,7 +27,7 @@ def ind2route(individual, instance):
         # Update elapsed time
         serviceTime = instance['customer_%d' % customerID]['service_time']
         returnTime = instance['distance_matrix'][customerID][0]    #time to the deport
-        updatedElapsedTime = elapsedTime + instance['distance_matrix'][lastCustomerID][customerID] + serviceTime + returnTime #b 
+        updatedElapsedTime = elapsedTime + instance['distance_matrix'][lastCustomerID][customerID] + serviceTime + returnTime 
         # Validate vehicle load and elapsed time
         if (updatedVehicleLoad <= vehicleCapacity) and (updatedElapsedTime <= deportDueTime):
             # Add to current sub-route
