@@ -17,7 +17,7 @@ def main():
 
     indSize = 25
     popSize = 80
-    cxPb = 0.85
+    cxPb = 0.7
     mutPb = 0.01
     NGen = 100
 
