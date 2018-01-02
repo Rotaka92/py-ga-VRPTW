@@ -1,0 +1,34 @@
+- Modell kritisieren/ beschreiben/ diskutieren
+
+
+- Modell ist in GAMS implementiert, wir sind aber frei
+
+
+- Breitner: Diskussion, Handlungsempfehlung, Limitationen, Seiten um die 20 pro Nase
+
+
+- Modellkapitel wird uns geschickt, war Masterarbeit (13 Seiten)
+
+
+- Drohnen, unmanned vehicles
+
+
+- Python-Code in den Anhang, CD mit Quellen
+
+
+- Sonneberg ist ab dem 02.01.2017
+
+
+- Stichwort: urbane Logistik, immer mehr in Entwicklung, immer neue Technologien, Verbindung immer wichtiger, City-Logistik, auf Starship eingehen
+
+
+
+Fragen:
+
+
+- Wieviele Roboter pro Basisstation?
+
+- Kunde mehrmals beliefert? Maximalgrenze einführen.
+
+- 
+
