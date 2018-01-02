@@ -6,7 +6,7 @@ from gavrptw.core import gaVRPTW
 
 ### seed 0 for the optimum in vehicle = 3, customers = 15 ###
 
-
+1/3777.887270329896
 
 def main():
     ### for a good solution, descriped in the paper

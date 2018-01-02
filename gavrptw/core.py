@@ -12,7 +12,7 @@ from . import BASE_DIR
 from .utils import makeDirsForFile, exist
 
 
-os.chdir('C:\\Users\\TapperR\\Desktop\\VRP2\\py-ga-VRPTW')
+#os.chdir('C:\\Users\\TapperR\\Desktop\\VRP2\\py-ga-VRPTW')
 
 
 def ind2route(individual, instance):
@@ -259,8 +259,8 @@ def gaVRPTW(instName, unitCost, initCost, waitCost, delayCost, indSize, popSize,
     #fit = toolbox.evaluate(bestInd)
     #bestInd.fitness.values = fit
     print('Best individual: %s' % bestInd)
-#    print('Fitness: %s' % bestInd.fitness.values[0])
-#    printRoute(ind2route(bestInd, instance))
+    print('Fitness: %s' % bestInd.fitness.values[0])
+    printRoute(ind2route(bestInd, instance))
     print('Total cost: %s' % (1 / bestInd.fitness.values[0]))
     if exportCSV:
         csvFilename = '%s_uC%s_iC%s_wC%s_dC%s_iS%s_pS%s_cP%s_mP%s_nG%s.csv' % (instName, unitCost, initCost, waitCost, delayCost, indSize, popSize, cxPb, mutPb, NGen)
