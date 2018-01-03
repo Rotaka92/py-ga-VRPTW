@@ -412,7 +412,54 @@ def gaVRPTW(instName, unitCost, initCost, waitCost, delayCost, indSize, popSize,
 #
 #plt.scatter(x = coord['x'].values, y = coord['y'].values)
 #
+
+
+
+
+#### Clustering with k-Means ####
+
+#from sklearn.cluster import KMeans
 #
+#X = np.array([[1, 2], [1, 4], [1, 0], [4, 2], [4, 4], [4, 0]])
+#
+#X = pd.DataFrame(X)
+#kmeans = KMeans(n_clusters=2, random_state=0).fit(X)
+#kmeans.labels_
+#kmeans.predict([[0, 0], [4, 4]])
+#kmeans.cluster_centers_
+#
+#
+#kmeans = KMeans(n_clusters=2, random_state=0).fit(coord)
+#kmeans.labels_
+#kmeans.predict([[0, 0], [4, 4]])
+#kmeans.cluster_centers_
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
