@@ -392,6 +392,15 @@ Fahrzeug 3: 0 - 1 - 3 - 8 - 10 - 0
 
 \end{center}
 
+
+\begin{figure}[h!]
+  \begin{center}
+    \includegraphics[width=150mm]{vrp.png}
+    \caption{Mögliche, solide Lösung des VRP}  \label{Typen}
+    {\footnotesize \textbf{orange:} Fahrzeug 1, \textbf{grün:} Fahrzeug 2, \textbf{schwarz:} Fahrzeug 3}
+  \end{center}
+\end{figure}
+
 Es werden somit alle 15 Gene des Chromosoms bzw. alle 15 Kunden durch die drei verfügbaren Fahrzeuge abgedeckt, ohne dass dabei eine Restriktion gebrochen wird.
 Um nun in Erfahrung zu bringen, wie effizient das vorliegende Chromosom ist in Bezug auf die Kosten, die es verursacht, ist, wird im genetischen Algorithmus eine Evaluation durchgeführt, mit der die Fitnessfunktion berechnet wird. 
 Nur anhand dieser Fitnessfunktion ist es dem genetischen Algorithmus möglich, effizient zu selektieren und sich iterativ weiterzuentwickeln.
@@ -427,30 +436,60 @@ Diese Distanz wird nun mit dem Faktor multipliziert, der angibt, wie viel Kosten
 Ergänzt wird dieses Produkt mit den Kosten für die Initialisierungskosten eines Fahrzeugs (hier: 60), sodass sich für diese Route des ersten Fahrzeugs Gesamtausgaben i.H.v. 1550.1659 Einheiten ergeben.
 
 Werden diese Schritte für die Routen aller drei Fahrzeuge durch- bzw. zusammengeführt, so ergeben sich Gesamtkosten des Chromosoms i.H.v. 3959.7053 Einheiten.
-Die Fitnessfunktion besitzt dann einen Wert von 0.0002525 und gibt dem Chromosom eine Fitness, die sich mit den anderen Chromosomen in der Population messen lässt.
+Die Fitnessfunktion besitzt dann einen Wert von 0.0002525 und gibt dem Chromosom eine Fitness, die sich mit den anderen Chromosomen in der Population messen lässt.\\
 
- 
+Das zuvor betrachtete Chromosom war das beste aus einer Anfangspopulation, die dadurch zustande gekommen ist, dass Chromosome zufällig zusammengewürfelt wurden.
+Für jedes einzelne wurde im nächsten Schritt die Fitness berechnet, wobei das Chromosom [5, 11, 7, 12, 9, 14, 15, 2, 4, 6, 13, 1, 3, 8, 10] mit dem Fitnesswert 0.0002525 am besten abschnitt und somit näher durchleuchtet wurde.
 
+Nun besteht jedoch die Möglichkeit, dass dies bei weitem nicht das Chromosom ist, da es lediglich das beste Chromosom aus der zufällig generierten Anfangspopulation ist, die aus nicht mehr als 100 Chromosomen besteht, sodass dieses Chromosom eher einer heuristischen Lösung ähnelt.
+Um dies herauszufinden, wurde in dieser Arbeit ein genetischer Algorithmus angewandt, für den bereits die Vorarbeit in Form der Generierung der Anfangspopulation geschaffen wurde.
 
+\subsubsection{Crossover und Mutation}
 
+Im nächsten Schritt wendet dieser Algorithmus in der ersten Iteration einen Crossover an, wodurch zwei zufällig gewählte Chromosome ausgewählt werden und auf eine zuvor festgelegte Art und Weise miteinander verknüpft werden, sodass am Ende zwei neue Chromosome entstehen, die wiederum in der Population mitaufgenommen werden.
+Bei diesem Crossover kann es sich um die verschiedensten Methoden handeln, die jedoch meistens auf Zufallsprozessen basieren.
+Der genetische Algorithmus, der in dieser Arbeit Anwendung fand, schnitt dabei eine bestimmte Sequenz aus dem Chromosom, bspw. [7, 12, 9] und addierte diese mit der kompletten Sequenz eines weiteren Chromosoms, sodass diese drei Gene dem zweiten, anderen Chromosom voran standen und in der Sequenz nun doppelt vorkamen. 
+Die Doppelgänger in der nun künstlich verlängerten Sequenz wurden gestrichen, sodass wiederum ein völlig neues Chromosom entstanden ist.
 
+Dieser Vorgang wird für einen bestimmten Anteil der Chromosome vorgenommen, wobei dieser Anteil durch die vorher bestimmte Crossover-Wahrscheinlichkeit bestimmt wird. 
+In dieser Arbeit konnten mit einer Crossover-Wahrscheinlichkeit i.H.v. 0.7 die besten Ergebnisse erzielt werden, sodass aus der Anfangspopulation von 100 Chromosomen ca. 70 Chromosome 35 Chromosompaare bildeten, die wiederum 70 neue Chromosome erschaffen haben, sodass im Anschluss der ersten Iteration eine neue Population mit insgesamt 170 Chromosomen entstanden ist. 
 
+Aus diesen 170 Chromosomen werden nun abermals mit einem Zufallsprozess die 100 überdurchschnittlich besten Chromosome mit in den nächsten Iterationsschritt mitaufgenommen, wobei darauf geachtet wird, dass mindestens der beste aus den 170 Chromosomen mit in diesen Schritt genommen werden, um die beste Lösung nicht zu verlieren und ggf. nicht noch einmal zu erhalten.\\ 
 
+Bevor dieser finale Schritt innerhalb einer Iteration allerdings in die Wege geleitet wird, wird ein kleiner Bruchteil der Chromosome (hier: 1\%) nochmals mutiert, um zu gewährleisten, dass die Konvergenz des Algorithmus nicht zu früh eintritt und dieser sich u.U. in einem lokalen Minimum befindet. 
+Auch hierbei existieren diverse Mutationsprozesse, die auf Zufallsmechanismen beruhen, wobei in dieser Arbeit auf einen Prozess zurückgegriffen wurde, der wiederum eine Sequenz des Chromosoms [7, 12, 9] herausschneidet und dieses an gleicher Stelle spiegelverkehrt [9, 12, 7] wieder einsetzt.\\
 
+Nachdem 100 Iterationen mit einer Crossover- bzw. Mutations-Wahrscheinlichkeit i.H.v. 0.7 bzw. 0.01 bei einer Populationsgröße von 80 durchgeführt wurden, ergibt sich ein Chromosom, dass totale Kosten i.H.v. 3777.8872 verursacht und somit eine Fitness von 0.0002646 erreicht, was auch nach mehreren Durchläufen unerreicht bleibt und somit einen äußerst guten Wert darstellen sollte.
+Das Chromosom nimmt dabei folgende Form an: 
 
+\begin{center}
+[5, 6, 13, 14, 15, 4, 3, 10, 11, 7, 8, 12, 1, 2, 9]
+\end{center}
 
+und verteilt sich dabei wie folgt auf die drei zur Verfügung stehenden Fahrzeuge: 
 
+\begin{center}
+Fahrzeug 1: 0 - 5 - 6 - 13 - 14 - 15 - 4 - 3 - 0
 
+Fahrzeug 2: 0 - 10 - 11 - 7 - 8 - 12 - 1 - 0
+
+Fahrzeug 3: 0 - 2 - 9 - 0
+\end{center}
+
+Auf Abbildung x ist zu sehen, dass sich die Verbindungslinien nun im Gegensatz zu denen in Abbildung x an keiner Stelle mehr durchkreuzen, was auch schon beim TSP ein Hinweis auf eine optimale Lösung ist.
+
+\begin{figure}[h!]
+  \begin{center}
+    \includegraphics[width=150mm]{vrpOpt52.png}
+    \caption{Optimale Lösung des VRP}  \label{Typen}
+	{\footnotesize \textbf{orange:} Fahrzeug 1, \textbf{grün:} Fahrzeug 2, \textbf{schwarz:} Fahrzeug 3}
+  \end{center}
+\end{figure}
 
 
 
 
 \newpage
-
-
-
-
-
 
 
 
