@@ -1,0 +1,14 @@
+  var READTHEDOCS_DATA = {
+    project: "scipbook",
+    version: "latest",
+    language: "en",
+    subprojects: {},
+    canonical_url: "http://scipbook.readthedocs.io/en/latest/",
+    theme: "sphinx_rtd_theme",
+    builder: "sphinx",
+    docroot: "/docs/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org",
+    commit: "0650d221"
+  };
+  

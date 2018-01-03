@@ -11416,5 +11416,7 @@
     ],
     "instance_name": "R101",
     "max_vehicle_number": 25,
-    "vehicle_capacity": 200.0
+    "vehicle_capacity": 200.0,
+	"accpower_time": 230,
+	"accpower_len": 180
 }

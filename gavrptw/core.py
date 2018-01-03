@@ -9,7 +9,6 @@ from csv import DictWriter
 from deap import base, creator, tools
 from operator import attrgetter
 from . import BASE_DIR
-from .utils import makeDirsForFile, exist
 
 
 #os.chdir('C:\\Users\\TapperR\\Desktop\\VRP2\\py-ga-VRPTW')

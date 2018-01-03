@@ -24,34 +24,29 @@ def ind2route(individual, instance):
     subRoute = []
     vehicleLoad = 0
     elapsedTime = 0
-    subRouteDist = 0
     lastCustomerID = 0
     for customerID in individual:
-        # customerID = 5
+        # customerID = 11
         ### Update vehicle load
         demand = instance['customer_%d' % customerID]['demand']
-        dist = instance['distance_matrix'][lastCustomerID][customerID]
-        subRouteDist = subRouteDist + dist + instance['distance_matrix'][customerID][0]
         updatedVehicleLoad = vehicleLoad + demand
         # Update elapsed time
         serviceTime = instance['customer_%d' % customerID]['service_time']
         returnTime = instance['distance_matrix'][customerID][0]    #time to the deport
         updatedElapsedTime = elapsedTime + instance['distance_matrix'][lastCustomerID][customerID] + serviceTime + returnTime 
-        # Validate vehicle load, elapsed time and the accumulator capacities
-        if (updatedVehicleLoad <= vehicleCapacity) and (updatedElapsedTime <= deportDueTime)\
-        and updatedElapsedTime<=instance['accpower_time'] and subRouteDist <= instance['accpower_len']:
+        arrive = elapsedTime + instance['distance_matrix'][lastCustomerID][customerID]
+        # Validate vehicle load, elapsed time and that the delivery is in the time window
+        if (updatedVehicleLoad <= vehicleCapacity) and (updatedElapsedTime <= deportDueTime) and instance['customer_%d' % customerID]['ready_time'] < arrive < instance['customer_%d' % customerID]['due_time'] :
             # Add to current sub-route
             subRoute.append(customerID)
             vehicleLoad = updatedVehicleLoad
             elapsedTime = updatedElapsedTime - returnTime
-            subRouteDist = subRouteDist - instance['distance_matrix'][customerID][0]
         else:
             # Save current sub-route
             route.append(subRoute)
             # Initialize a new sub-route and add to it
             subRoute = [customerID]
             vehicleLoad = demand
-            subRouteDist = instance['distance_matrix'][0][customerID]
             elapsedTime = instance['distance_matrix'][0][customerID] + serviceTime
         # Update last customer ID
         lastCustomerID = customerID
@@ -84,7 +79,7 @@ def printRoute(route, merge=False):
 
 
 
-def evalVRPTW(individual, instance, unitCost=1.0, initCost=0, waitCost=0, delayCost=0, persCost = 0):
+def evalVRPTW(individual, instance, unitCost=1.0, initCost=0, persCost = 0):
     #individual = pop[0], individual = tools.selBest(pop, 1)[0], individual = bestInd
     totalCost = 0
     route = ind2route(individual, instance)
@@ -92,9 +87,7 @@ def evalVRPTW(individual, instance, unitCost=1.0, initCost=0, waitCost=0, delayC
     for subRoute in route:
         #print (subRoute)      
         #subRoute = [5, 11, 7, 12, 9]
-        subRouteTimeCost = 0
         subRouteDistance = 0
-        elapsedTime = 0
         lastCustomerID = 0
         for customerID in subRoute:
             # customerID = 5
@@ -102,26 +95,16 @@ def evalVRPTW(individual, instance, unitCost=1.0, initCost=0, waitCost=0, delayC
             distance = instance['distance_matrix'][lastCustomerID][customerID]
             # Update sub-route distance
             subRouteDistance = subRouteDistance + distance
-            # Calculate time cost
-            arrivalTime = elapsedTime + distance
-            timeCost = delayCost * max(arrivalTime - instance['customer_%d' % customerID]['due_time'], 0)
-            # Update sub-route time cost
-            subRouteTimeCost = subRouteTimeCost + timeCost
-            # Update elapsed time for the two cases, both waiting for the customer and arriving at the customer after his ready_time
-            if arrivalTime > instance['customer_%d' % customerID]['ready_time']:
-                elapsedTime = arrivalTime + instance['customer_%d' % customerID]['service_time']
-            else:
-                elapsedTime = instance['customer_%d' % customerID]['ready_time'] + instance['customer_%d' % customerID]['service_time']
             # Update last customer ID
             lastCustomerID = customerID
         # Calculate transport cost
         subRouteDistance = subRouteDistance + instance['distance_matrix'][lastCustomerID][0]
         subRouteTranCost = initCost + unitCost * subRouteDistance
         # Obtain sub-route cost
-        subRouteCost = subRouteTimeCost + subRouteTranCost
+        subRouteCost = subRouteTranCost
         # Update total cost
         totalCost = totalCost + subRouteCost
-    #for-loop for the accumulation of the personal costs in case of more than one deport-station    
+        
     personalCost = persCost*(instance['deport']['due_time']-instance['deport']['ready_time'])
     totalCost = totalCost + personalCost
     fitness = 1.0 / totalCost
