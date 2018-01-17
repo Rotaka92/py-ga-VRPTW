@@ -3,19 +3,23 @@
 \contentsline {section}{Tabellenverzeichnis}{iii}
 \contentsline {section}{Abk\IeC {\"u}rzungsverzeichnis}{iii}
 \contentsline {section}{Symbolverzeichnis}{iii}
-\contentsline {section}{\numberline {1}Einleitung}{1}
-\contentsline {section}{\numberline {2}Grundlagenteil}{1}
-\contentsline {subsection}{\numberline {2.1}hier Titel des Unterkapitels eingeben}{1}
-\contentsline {subsection}{\numberline {2.2}hier Titel des Unterkapitels eingeben}{1}
-\contentsline {subsubsection}{\numberline {2.2.1}hier Titel des Unterunterkapitels eingeben}{1}
-\contentsline {subsubsection}{\numberline {2.2.2}hier Titel des Unterunterkapitels eingeben}{1}
-\contentsline {subsection}{\numberline {2.3}hier Titel des Unterkapitels eingeben}{2}
-\contentsline {section}{\numberline {3}L\IeC {\"o}sung des Modells nach Kleinschmidt durch GA}{3}
-\contentsline {subsection}{\numberline {3.1}Implementierung in Python}{3}
-\contentsline {section}{\numberline {4}Modell\IeC {\"a}nderungen und L\IeC {\"o}sung durch GA}{4}
-\contentsline {subsection}{\numberline {4.1}Implementierung in Python}{4}
-\contentsline {subsection}{\numberline {4.2}Beispiel, 15 Kunden, 3 Lieferwagen}{4}
-\contentsline {subsubsection}{\numberline {4.2.1}Evaluation des Chromosoms im genetischen Algorithmus}{7}
-\contentsline {subsubsection}{\numberline {4.2.2}Crossover und Mutation}{8}
-\contentsline {section}{\numberline {5}Schlussbemerkungen}{10}
-\contentsline {section}{\numberline {A}aussagekr\IeC {\"a}ftige \IeC {\"U}berschrift f\IeC {\"u}r Inhalt des Anhangs}{11}
+\contentsline {section}{\numberline {1}L\IeC {\"o}sung eines ELRP-TW nach Kleinschmidt durch GA}{1}
+\contentsline {subsection}{\numberline {1.1}Simultan-sequentielle Herangehensweise}{1}
+\contentsline {subsubsection}{\numberline {1.1.1}Das Facility Location Problem}{1}
+\contentsline {subsubsection}{\numberline {1.1.2}Modifizierung des Algorithmus zur L\IeC {\"o}sung des FLP}{3}
+\contentsline {subsection}{\numberline {1.2}L\IeC {\"o}sung eines ERP-TW durch GA}{4}
+\contentsline {subsubsection}{\numberline {1.2.1}Grundlagen zum genetischen Algorithmus}{4}
+\contentsline {paragraph}{\numberline {1.2.1.1}Darstellung der Chromosome}{6}
+\contentsline {subsubsection}{\numberline {1.2.2}Implementierung in Python}{6}
+\contentsline {subsubsection}{\numberline {1.2.3}Evaluation des Chromosoms im genetischen Algorithmus}{10}
+\contentsline {subsubsection}{\numberline {1.2.4}Crossover und Mutation}{10}
+\contentsline {subsection}{\numberline {1.3}Implementierung des Algorithmus zur L\IeC {\"o}sung des FLP in das ERP-TW}{12}
+\contentsline {subsection}{\numberline {1.4}Diskussion der Ergebnisse}{15}
+\contentsline {section}{\numberline {2}Erweiterungen}{17}
+\contentsline {subsection}{\numberline {2.1}Zulassen von mehreren Belieferungen je Kundenort}{17}
+\contentsline {subsection}{\numberline {2.2}Belieferungen der Kundenorte au\IeC {\ss }erhalb des Zeitfensters}{17}
+\contentsline {subsection}{\numberline {2.3}Diskussion der erweiterten Modelle}{17}
+\contentsline {section}{\numberline {3}Limitationen und Handlungsempfehlungen}{18}
+\contentsline {section}{\numberline {4}Diskussion}{20}
+\contentsline {section}{\numberline {5}Schlussbemerkungen}{22}
+\contentsline {section}{\numberline {A}aussagekr\IeC {\"a}ftige \IeC {\"U}berschrift f\IeC {\"u}r Inhalt des Anhangs}{23}

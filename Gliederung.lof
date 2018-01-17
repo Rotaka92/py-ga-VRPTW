@@ -1,3 +1,5 @@
 \select@language {ngerman}
-\contentsline {figure}{\numberline {1}{\ignorespaces M\IeC {\"o}gliche, solide L\IeC {\"o}sung des VRP\relax }}{6}
-\contentsline {figure}{\numberline {2}{\ignorespaces Optimale L\IeC {\"o}sung des VRP\relax }}{10}
+\contentsline {figure}{\numberline {1}{\ignorespaces L\IeC {\"o}sung eines einfachen FLP\relax }}{2}
+\contentsline {figure}{\numberline {2}{\ignorespaces Crossover zweier Elternchromosome \relax }}{5}
+\contentsline {figure}{\numberline {3}{\ignorespaces M\IeC {\"o}gliche, solide L\IeC {\"o}sung des VRP\relax }}{9}
+\contentsline {figure}{\numberline {4}{\ignorespaces Optimale L\IeC {\"o}sung des VRP\relax }}{12}

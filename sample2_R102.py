@@ -2,33 +2,31 @@
 # sample_R101.py
 
 import random
-from gavrptw.core44 import gaVRPTW
-from gavrptw.flp3 import make_data, flp
+from gavrptw.core2 import gaVRPTW
 
 ### seed 0 for the optimum in vehicle = 3, customers = 15 ###
 
 
 def main():
     ### for a good solution, which is descriped at first in the paper ###
-    #random.seed(64)
+    random.seed(64)
     
-  ### for sufficient good solution (heuristic), which is also described in the paper, uncomment this random.seed-function ###
-    random.seed(52)
+    ### for sufficient good solution (heuristic), which is also described in the paper, uncomment this random.seed-function ###
+    #random.seed(52)
         
-    instName = 'R101a'
+    instName = 'R102'
     
     unitCost = 8.0
-    initCost = 60.0
+    initCost = 600.0
     waitCost = 0.5
     delayCost = 1.5
+    persCost = 0.4
     
-    indSize = 10
+    indSize = 15
     popSize = 80
     cxPb = 0.7
     mutPb = 0.01
     NGen = 100
-    
-    
     
     exportCSV = False
 
@@ -38,6 +36,7 @@ def main():
         initCost=initCost,
         waitCost=waitCost,
         delayCost=delayCost,
+        persCost = persCost,
         indSize=indSize,
         popSize=popSize,
         cxPb=cxPb,
@@ -52,7 +51,7 @@ if __name__ == '__main__':
 
 
 #
-#52
+#
 #Best individual: [5, 6, 13, 14, 15, 4, 3, 10, 11, 7, 8, 12, 1, 2, 9]
 #Total cost: 3777.887270329896
 

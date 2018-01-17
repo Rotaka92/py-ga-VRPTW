@@ -8,53 +8,54 @@ import pandas as pd
 from csv import DictWriter
 from deap import base, creator, tools
 from operator import attrgetter
-from . import BASE_DIR
-from .utils import makeDirsForFile, exist
 
+from . import BASE_DIR
+import pandas as pd
 
 #os.chdir('C:\\Users\\TapperR\\Desktop\\VRP2\\py-ga-VRPTW')
-#os.chdir('C:\\Users\\Robin\\py-ga-VRPTW')
+
+
+
+I,J,d,M,f,c = make_data()
+
+
+c = {k: c[k] / 1000 for k in c.keys()}
+
+
 
 
 def ind2route(individual, instance):
     #individual = pop[0], individual = bestInd 
     route = []
     vehicleCapacity = instance['vehicle_capacity']
-    deportReadyTime = instance['deport']['due_time']    #when the vehicle can start soonest, has to be implemented somewhere
-    deportDueTime =  instance['deport']['due_time']     #when the vehicle has to be back 'home'
+    deportDueTime =  instance['deport']['due_time']   #when the vehicle has to be back 'home'
     ### Initialize a sub-route
     subRoute = []
     vehicleLoad = 0
     elapsedTime = 0
-    subRouteDist = 0
-    lastCustomerID = 0
+    lastCustomerID = 1
     for customerID in individual:
-        # customerID = 5
+        # customerID = 7
         ### Update vehicle load
         demand = instance['customer_%d' % customerID]['demand']
-        dist = instance['distance_matrix'][lastCustomerID][customerID]
-        subRouteDist = subRouteDist + dist + instance['distance_matrix'][customerID][0]
         updatedVehicleLoad = vehicleLoad + demand
         # Update elapsed time
         serviceTime = instance['customer_%d' % customerID]['service_time']
-        returnTime = instance['distance_matrix'][customerID][0]    #time to the deport
-        updatedElapsedTime = elapsedTime + instance['distance_matrix'][lastCustomerID][customerID] + serviceTime + returnTime 
-        # Validate vehicle load, elapsed time and the accumulator capacities
-        if (updatedVehicleLoad <= vehicleCapacity) and (updatedElapsedTime <= deportDueTime)\
-        and updatedElapsedTime<=instance['accpower_time'] and subRouteDist <= instance['accpower_len']:
+        returnTime = c[customerID+2, 1]    #time to the deport
+        updatedElapsedTime = elapsedTime + c[lastCustomerID, customerID+2] + serviceTime + returnTime 
+        # Validate vehicle load and elapsed time
+        if (updatedVehicleLoad <= vehicleCapacity) and (updatedElapsedTime <= deportDueTime):
             # Add to current sub-route
             subRoute.append(customerID)
             vehicleLoad = updatedVehicleLoad
             elapsedTime = updatedElapsedTime - returnTime
-            subRouteDist = subRouteDist - instance['distance_matrix'][customerID][0]
         else:
             # Save current sub-route
             route.append(subRoute)
             # Initialize a new sub-route and add to it
             subRoute = [customerID]
             vehicleLoad = demand
-            subRouteDist = instance['distance_matrix'][0][customerID]
-            elapsedTime = instance['distance_matrix'][0][customerID] + serviceTime
+            elapsedTime = c[1, customerID+2] + serviceTime
         # Update last customer ID
         lastCustomerID = customerID
     if subRoute != []:
@@ -83,11 +84,11 @@ def printRoute(route, merge=False):
 
 
 
+unitCost = 800
 
 
-
-def evalVRPTW(individual, instance, unitCost=1.0, initCost=0, waitCost=0, delayCost=0, persCost = 0):
-    #individual = pop[0], individual = tools.selBest(pop, 1)[0], individual = bestInd
+def evalVRPTW(individual, instance, unitCost=1.0, initCost=0, waitCost=0, delayCost=0):
+    #individual = pop[0], individual = tools.selBest(pop, 1)[0]
     totalCost = 0
     route = ind2route(individual, instance)
     totalCost = 0
@@ -97,35 +98,29 @@ def evalVRPTW(individual, instance, unitCost=1.0, initCost=0, waitCost=0, delayC
         subRouteTimeCost = 0
         subRouteDistance = 0
         elapsedTime = 0
-        lastCustomerID = 0
+        lastCustomerID = 1
         for customerID in subRoute:
-            # customerID = 5
+            # customerID = 9
             # Calculate section distance
-            distance = instance['distance_matrix'][lastCustomerID][customerID]
+            distance = c[lastCustomerID, customerID+2]
             # Update sub-route distance
             subRouteDistance = subRouteDistance + distance
             # Calculate time cost
             arrivalTime = elapsedTime + distance
-            timeCost = delayCost * max(arrivalTime - instance['customer_%d' % customerID]['due_time'], 0)
+            timeCost = waitCost * max(instance['customer_%d' % customerID]['ready_time'] - arrivalTime, 0) + delayCost * max(arrivalTime - instance['customer_%d' % customerID]['due_time'], 0)
             # Update sub-route time cost
             subRouteTimeCost = subRouteTimeCost + timeCost
-            # Update elapsed time for the two cases, both waiting for the customer and arriving at the customer after his ready_time
-            if arrivalTime > instance['customer_%d' % customerID]['ready_time']:
-                elapsedTime = arrivalTime + instance['customer_%d' % customerID]['service_time']
-            else:
-                elapsedTime = instance['customer_%d' % customerID]['ready_time'] + instance['customer_%d' % customerID]['service_time']
+            # Update elapsed time
+            elapsedTime = arrivalTime + instance['customer_%d' % customerID]['service_time']
             # Update last customer ID
-            lastCustomerID = customerID
+            lastCustomerID = customerID+2
         # Calculate transport cost
-        subRouteDistance = subRouteDistance + instance['distance_matrix'][lastCustomerID][0]
+        subRouteDistance = subRouteDistance + c[lastCustomerID, 1]
         subRouteTranCost = initCost + unitCost * subRouteDistance
         # Obtain sub-route cost
         subRouteCost = subRouteTimeCost + subRouteTranCost
         # Update total cost
         totalCost = totalCost + subRouteCost
-    #for-loop for the accumulation of the personal costs in case of more than one deport-station    
-    personalCost = persCost*(instance['deport']['due_time']-instance['deport']['ready_time'])
-    totalCost = totalCost + personalCost
     fitness = 1.0 / totalCost
     return fitness,
 
@@ -155,7 +150,7 @@ def mutInverseIndexes(individual):
     return individual,
 
 
-def gaVRPTW(instName, unitCost, initCost, waitCost, delayCost, persCost, indSize, popSize, cxPb, mutPb, NGen, exportCSV=False, customizeData=False):
+def gaVRPTW(instName, unitCost, initCost, waitCost, delayCost, indSize, popSize, cxPb, mutPb, NGen, exportCSV=False, customizeData=False):
     #BASE_DIR = 'C:\\Users\\TapperR\\Desktop\\py-ga-VRPTW-master (2)\\py-ga-VRPTW-master'
     if customizeData:
         jsonDataDir = os.path.join(BASE_DIR,'data', 'json_customize')
@@ -177,7 +172,7 @@ def gaVRPTW(instName, unitCost, initCost, waitCost, delayCost, persCost, indSize
     toolbox.register('population', tools.initRepeat, list, toolbox.individual)
     #toolbox.population(n=popSize)
     # Operator registering
-    toolbox.register('evaluate', evalVRPTW, instance=instance, unitCost=unitCost, initCost=initCost, waitCost=waitCost, delayCost=delayCost, persCost=persCost)
+    toolbox.register('evaluate', evalVRPTW, instance=instance, unitCost=unitCost, initCost=initCost, waitCost=waitCost, delayCost=delayCost)
     #toolbox.evaluate()
     toolbox.register('select', tools.selRoulette)
     toolbox.register('mate', cxPartialyMatched)
@@ -268,7 +263,7 @@ def gaVRPTW(instName, unitCost, initCost, waitCost, delayCost, persCost, indSize
     bestInd = tools.selBest(pop, 1)[0]
     
     #### For evaluating the chromosome which is examined in the paper, run this Individual ####
-    #bestInd = creator.Individual([5, 11, 7, 12, 9, 14, 15, 2, 4, 6, 13, 1, 3, 8, 10])
+    #bestInd = creator.Individual([7, 8, 10, 6, 3, 4, 1, 2, 9, 5])
     #bestInd = creator.Individual([5, 6, 13, 14, 15, 4, 3, 10, 11, 7, 8, 12, 1, 2, 9])
     #fit = toolbox.evaluate(bestInd)
     #bestInd.fitness.values = fit
@@ -413,19 +408,19 @@ def gaVRPTW(instName, unitCost, initCost, waitCost, delayCost, persCost, indSize
 #
 #
 ##### giving the first 15 x and y coordinates for the system of coordinates ####
-#import matplotlib.pyplot as plt
-#coord = pd.DataFrame({'x': [], 'y': []})
-#
-#for i in np.arange(1,len(bestInd)+1):
-#    p = instance['customer_%d' % i]['coordinates']
-#    t   = pd.DataFrame([p])
-#    coord = coord.append(t)
-#
-#
-#coord.reset_index(inplace = True, drop = True)
-#
-#plt.scatter(x = coord['x'].values, y = coord['y'].values)
-#
+import matplotlib.pyplot as plt
+coord = pd.DataFrame({'x': [], 'y': []})
+
+for i in np.arange(1,len(bestInd)+1):
+    p = instance['customer_%d' % i]['coordinates']
+    t   = pd.DataFrame([p])
+    coord = coord.append(t)
+
+
+coord.reset_index(inplace = True, drop = True)
+
+plt.scatter(x = coord['x'].values, y = coord['y'].values)
+
 
 
 
@@ -453,125 +448,14 @@ def gaVRPTW(instName, unitCost, initCost, waitCost, delayCost, persCost, indSize
 
 
 #### Facility location problem with more than one depot ####
-#
-#import pyscipopt
-#from pyscipopt import Model, multidict, quicksum
-#
-#
-##I = Index of customer, d = demand of each customer
-#I, d = multidict({1:80, 2:270, 3:250, 4:160, 5:180})
-#
-#
-##Index of basis station, max Capacity of the station, fix cost of opening the station
-#J, M, f = multidict({1:[500,1000], 2:[500,1000], 3:[500,1000]})
-#
-#
-##cost per unit for each road
-#c = {(1,1):4,  (1,2):6,  (1,3):9,
-#     (2,1):5,  (2,2):4,  (2,3):7,
-#     (3,1):6,  (3,2):3,  (3,3):4,
-#     (4,1):8,  (4,2):5,  (4,3):3,
-#     (5,1):10, (5,2):8,  (5,3):4,
-#     }
-#
-#
-#
-#
-#def flp(I,J,d,M,f,c):
-#    model = Model("flp")
-#    x,y = {},{}
-#    for j in J:
-#        #j = 1
-#        y[j] = model.addVar(vtype="B", name="y(%s)"%j)
-#        for i in I:
-#            #i = 1
-#            x[i,j] = model.addVar(vtype="C", name="x(%s,%s)"%(i,j))
-#    for i in I:
-#        #i = 1,2,3,4,5
-#        model.addCons(quicksum(x[i,j] for j in J) == d[i], "Demand(%s)"%i)
-#    for j in M:
-#        #j = 1,2,3
-#        model.addCons(quicksum(x[i,j] for i in I) <= M[j]*y[j], "Capacity(%s)"%i)
-#    for (i,j) in x:
-#        #(i,j) = (1,1), (2,1), ...
-#        model.addCons(x[i,j] <= d[i]*y[j], "Strong(%s,%s)"%(i,j))
-#    model.setObjective(
-#        quicksum(f[j]*y[j] for j in J) +
-#        quicksum(c[i,j]*x[i,j] for i in I for j in J),
-#        "minimize")
-#    model.data = x,y
-#    return model
-#
-#
-#model = flp(I, J, d, M, f, c)
-#model.optimize()
-#EPS = 1.e-6
-#x,y = model.__data
-#edges = [(i,j) for (i,j) in x if model.GetVal(x[i,j]) > EPS]
-#facilities = [j for j in y if model.GetVal(y[j]) > EPS]
-#print ("Optimal value=", model.GetObjVal())
-#print ("Facilities at nodes:", facilities)
-#print ("Edges:", edges)
-#
-#
-#
-#
-#
 
 
 
 
 
-#from gurobipy import *
-#import math
-#
-#def distance(a,b):
-#  dx = a[0] - b[0]
-#  dy = a[1] - b[1]
-#  return math.sqrt(dx*dx + dy*dy)
-#
-## Problem data
-#clients = [[0, 1.5],[2.5, 1.2]]
-#facilities = [[0,0],[0,1],[0,1],
-#              [1,0],[1,1],[1,2],
-#              [2,0],[2,1],[2,2]]
-#charge = [3,2,3,1,3,3,4,3,2]
-#
-#numFacilities = len(facilities)
-#numClients = len(clients)
-#
-#m = Model()
-#
-## Add variables
-#x = {}
-#y = {}
-#d = {} # Distance matrix (not a variable)
-#alpha = 1
-#
-#for j in range(numFacilities):
-#  x[j] = m.addVar(vtype=GRB.BINARY, name="x%d" % j)
-#
-#for i in range(numClients):
-#  for j in range(numFacilities):
-#    y[(i,j)] = m.addVar(lb=0, vtype=GRB.CONTINUOUS, name="t%d,%d" % (i,j))
-#    d[(i,j)] = distance(clients[i], facilities[j])
-#
-#m.update()
-#
-## Add constraints
-#for i in range(numClients):
-#  for j in range(numFacilities):
-#    m.addConstr(y[(i,j)] <= x[j])
-#
-#for i in range(numClients):
-#  m.addConstr(quicksum(y[(i,j)] for j in range(numFacilities)) == 1)
-#
-#m.setObjective( quicksum(charge[j]*x[j] + quicksum(alpha*d[(i,j)]*y[(i,j)]
-#                for i in range(numClients)) for j in range(numFacilities)) )
-#
-#m.optimize()
-#
-#
+
+
+
 
 
 

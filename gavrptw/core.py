@@ -149,6 +149,19 @@ def gaVRPTW(instName, unitCost, initCost, waitCost, delayCost, indSize, popSize,
     jsonFile = os.path.join(jsonDataDir, '%s.json' % instName)
     with open(jsonFile) as f:
         instance = load(f)
+    xDep = [instance['deport']['coordinates']['x']]
+    yDep = [instance['deport']['coordinates']['y']]
+    xCust = [instance['customer_%d' %i]['coordinates']['x'] for i in range(1,I+1)]    # positions of the points in the plane
+    yCust = [instance['customer_%d' %i]['coordinates']['y'] for i in range(1,I+1)]
+    x1 = xDep + xCust
+    y1 = yDep + yCust
+    c = {}
+    for i in range(len(x1)):
+        #i = 0
+        for j in range(len(y1)):
+            #j = 1
+            c[i,j] = distance(x1[i],y1[i],x1[j],y1[j])
+    return I,J,d,M,f,c
     creator.create('FitnessMax', base.Fitness, weights=(1.0,))
     creator.create('Individual', list, fitness=creator.FitnessMax)
     #creator.Individual()
@@ -436,6 +449,8 @@ def gaVRPTW(instName, unitCost, initCost, waitCost, delayCost, indSize, popSize,
 
 
 
+
+#### Facility location problem with more than one depot ####
 
 
 

@@ -51,7 +51,7 @@ free variables
 
 binary variables
 
-  alpha(g,h,k)   1 wenn Knoten g dem Knoten h auf Tour k vorangeht
+  alpha(g,h,k)   1 wenn Knoten g dem Knoten h auf Tour k vorangeht				checked
   beta(i,j)      1 wenn Kunde i von der Basisstation j beliefert wird
   gamma(j)       1 wenn die Basisstation j errichtet wird
   y(g,k)         1 wenn Ort g auf Tour k besucht wird;
@@ -106,6 +106,8 @@ SpaetesteAnkunftBS       Ankunft bei der BS muss vor deren Schließung erfolgen
 Zielfunktion_LRP..
   ZFW_LRP =e= sum((k,j),flat*y(j,k)) + sum((j), ((close(j)-open(j))*z*cp)*gamma(j)) + sum((g,h,k), dis(g,h) * c * alpha(g,h,k)) ;
 
+	checked 
+  
 *--------------------------------------------
 *        Restriktionen für die Tourenplanung
 *--------------------------------------------
@@ -114,26 +116,49 @@ Zielfunktion_LRP..
 ** Jeder Kunde wird genau einer Tour zugewiesen
 KundeTour(i)..
   sum(k, y(i,k)) =e= 1;
+  
+  
+	checked
+  
 
 *Jeder angefahrene Ort g wird einmal verlassen
 OrtVerlassen(g,k)..
 sum(h, alpha(g,h,k)) =e= y(g,k);
 
+
+	checked
+	
+
 *Jeder angefahrene Ort h wird einmal angefahren
 OrtAnfahren(h,k)..
 sum(g, alpha(g,h,k)) =e= y(h,k);
 
+
+	checked
+	
+
 *Keine Kurzzyklen
 Kurzzyklen(l,i,k)$(ord(i)<>ord(l))..
   u(l,k) - u(i,k) + card(i)*alpha(l,i,k) =l= card(i) - 1;
+  
+ 
+	checked
+	
 
 * Kein Knoten darf sich selbst anfahren
 SelbstAnfahren(g,k)..
          alpha(g,g,k)    =e=     0;
+	
+	
+	checked
 
+	
 *Maximale Fahrzeugkapazität muss eingehalten werden
 FahrzeugKap(k)..
   sum((i),d(i)*y(i,k)) =l= Comp;
+  
+  
+	checked
 
 *------------------------------------------------
 *   Erweiterung um die Stationszuordnung zum LRP
@@ -150,6 +175,10 @@ KundeEineStation(i)..
 *Kapazitätsbeschränkung einer Station und Station nur anfahren wenn eroeffnet
 StationKap(j)..
   sum((i), d(i)*beta(i,j)) =l= Cap(j)*gamma(j);
+  
+  
+	checked
+  
 
 *--------------------------------------------
 *        Erweiterung zum Electric LRP
@@ -159,10 +188,20 @@ StationKap(j)..
 BatteryKap(k)..
 sum((g,h)$(ord(g)<>ord(h)), dis(g,h)*alpha(g,h,k)) =l= akku_s + p_s;
 
+
+	checked
+
+
+
 * Maximale Einsatzdauer der Batterie
 BatteryZeit(k)..
          sum((i,g), (sz + fzr(i,g))*alpha(i,g,k)) + sum((j,h), fzr(j,h)*alpha(j,h,k)) =l= akku_T + p_T;
 
+	
+	checked
+	
+	
+	
 * Maximal zulässige Geschwindigkeit nicht überschreiten
 Geschwindigkeit..
          sp =l= sp_max;

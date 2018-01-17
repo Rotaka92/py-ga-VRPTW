@@ -9,51 +9,85 @@ from csv import DictWriter
 from deap import base, creator, tools
 from operator import attrgetter
 from . import BASE_DIR
-from .utils import makeDirsForFile, exist
+
 
 
 #os.chdir('C:\\Users\\TapperR\\Desktop\\VRP2\\py-ga-VRPTW')
 
 
-def ind2route(individual, instance):
+def ind2route(individual, instance, stat_nr, dist_matr):
     #individual = pop[0], individual = bestInd 
     route = []
+    
+    #which specific customers are assigned to the station
+    p = []
+    for i in instance:
+        #print (i), i = 'customer_10'
+        if i.startswith('cust'):
+            t = i.split('_')[1]
+            p.append(t)
+            
+            
     vehicleCapacity = instance['vehicle_capacity']
-    deportDueTime =  instance['deport']['due_time']   #when the vehicle has to be back 'home'
+    deportDueTime =  instance['deport%d'%stat_nr]['due_time']   #when the vehicle has to be back 'home'
     ### Initialize a sub-route
     subRoute = []
     vehicleLoad = 0
-    elapsedTime = 0
-    lastCustomerID = 0
+    dist1 = 0
+    elapsedTime = instance['deport%d'%stat_nr]['ready_time']
+    lastCustomerID = stat_nr
     for customerID in individual:
-        # customerID = 11
+        # customerID = individual[4]
         ### Update vehicle load
-        demand = instance['customer_%d' % customerID]['demand']
-        updatedVehicleLoad = vehicleLoad + demand
-        # Update elapsed time
-        serviceTime = instance['customer_%d' % customerID]['service_time']
-        returnTime = instance['distance_matrix'][customerID][0]    #time to the deport
-        updatedElapsedTime = elapsedTime + instance['distance_matrix'][lastCustomerID][customerID] + serviceTime + returnTime 
-        arrive = elapsedTime + instance['distance_matrix'][lastCustomerID][customerID]
-        # Validate vehicle load, elapsed time and that the delivery is in the time window
-        if (updatedVehicleLoad <= vehicleCapacity) and (updatedElapsedTime <= deportDueTime) and instance['customer_%d' % customerID]['ready_time'] < arrive < instance['customer_%d' % customerID]['due_time'] :
-            # Add to current sub-route
-            subRoute.append(customerID)
-            vehicleLoad = updatedVehicleLoad
-            elapsedTime = updatedElapsedTime - returnTime
-        else:
-            # Save current sub-route
-            route.append(subRoute)
-            # Initialize a new sub-route and add to it
-            subRoute = [customerID]
-            vehicleLoad = demand
-            elapsedTime = instance['distance_matrix'][0][customerID] + serviceTime
-        # Update last customer ID
-        lastCustomerID = customerID
+        customerID = customerID - 1
+        for i in p:
+            #print (i), i = str(4), i = 1
+            if instance['customer_%s' % i]['belongs_to'][1] == customerID:
+                demand = instance['customer_%s' % i]['demand']
+                updatedVehicleLoad = vehicleLoad + demand
+                
+                # Update distance
+                dist1 = dist1 + dist_matr[lastCustomerID, int(i)+2] + dist_matr[stat_nr, int(i)+2]
+                
+                # Update elapsed time
+                serviceTime = instance['customer_%s' % i]['service_time']
+                returnTime = (dist_matr[stat_nr, int(i)+2])/60    #time to the deport
+                updatedElapsedTime = elapsedTime + (dist_matr[lastCustomerID, int(i)+2]/60) + serviceTime + returnTime 
+                arrive = elapsedTime + (dist_matr[lastCustomerID, int(i)+2]/60)
+                
+                # Validate vehicle load, elapsed time and that the delivery is in the time window
+                if (updatedVehicleLoad <= vehicleCapacity) and (updatedElapsedTime <= deportDueTime)\
+                and instance['customer_%s' % i]['ready_time'] < arrive < instance['customer_%s' % i]['due_time']\
+                and updatedElapsedTime < instance['accpower_time']+480 and dist1 < instance['accpower_len']:
+                    # Add to current sub-route
+                    subRoute.append(i)
+                    vehicleLoad = updatedVehicleLoad
+                
+                    #because the journey continues, delete time and distance to the depot
+                    elapsedTime = updatedElapsedTime - returnTime
+                    dist1 = dist1 - dist_matr[stat_nr, int(i)+2]
+                else:
+                    # Save current sub-route
+                    route.append(subRoute)
+                    # Initialize a new sub-route and add to  it
+                    subRoute = [i]
+                    vehicleLoad = demand
+                    elapsedTime = instance['customer_%s' % i]['ready_time'] + serviceTime
+                    dist1 = 0
+                # Update last customer ID
+                lastCustomerID = int(i)+2
     if subRoute != []:
-        # Save current sub-route before return if not empty
+                # Save current sub-route before return if not empty
         route.append(subRoute)
+        
+     
+        
+    route = [x for x in route if x != []]
+    
     return route
+
+
+
 
 
 def printRoute(route, merge=False):
@@ -75,37 +109,35 @@ def printRoute(route, merge=False):
     return
 
 
+        
 
-
-
-
-def evalVRPTW(individual, instance, unitCost=1.0, initCost=0, persCost = 0):
-    #individual = pop[0], individual = tools.selBest(pop, 1)[0], individual = bestInd
+def evalVRPTW(individual, instance, dist_matr, cU, initCost, persCost, stat_nr):
+    #individual = pop[0], individual = tools.selBest(pop, 1)[0], individual = bestInd, unitCost = cU
     totalCost = 0
-    route = ind2route(individual, instance)
+    route = ind2route(individual, instance, stat_nr, dist_matr)
     totalCost = 0
     for subRoute in route:
         #print (subRoute)      
-        #subRoute = [5, 11, 7, 12, 9]
+        #subRoute = ['4', '1']
         subRouteDistance = 0
-        lastCustomerID = 0
+        lastCustomerID = stat_nr
         for customerID in subRoute:
-            # customerID = 5
+            # customerID = '4'
             # Calculate section distance
-            distance = instance['distance_matrix'][lastCustomerID][customerID]
+            distance = dist_matr[lastCustomerID, int(customerID)+2]
             # Update sub-route distance
             subRouteDistance = subRouteDistance + distance
             # Update last customer ID
-            lastCustomerID = customerID
+            lastCustomerID = int(customerID)
+            
         # Calculate transport cost
-        subRouteDistance = subRouteDistance + instance['distance_matrix'][lastCustomerID][0]
-        subRouteTranCost = initCost + unitCost * subRouteDistance
+        subRouteDistance = subRouteDistance + dist_matr[lastCustomerID, stat_nr]
+        subRouteTranCost = initCost + cU * subRouteDistance
         # Obtain sub-route cost
         subRouteCost = subRouteTranCost
         # Update total cost
-        totalCost = totalCost + subRouteCost
-        
-    personalCost = persCost*(instance['deport']['due_time']-instance['deport']['ready_time'])
+        totalCost = totalCost + subRouteCost        
+    personalCost = persCost*(instance['deport%d'%stat_nr]['due_time']-instance['deport%d'%stat_nr]['ready_time'])
     totalCost = totalCost + personalCost
     fitness = 1.0 / totalCost
     return fitness,
@@ -136,15 +168,8 @@ def mutInverseIndexes(individual):
     return individual,
 
 
-def gaVRPTW(instName, unitCost, initCost, waitCost, delayCost, persCost, indSize, popSize, cxPb, mutPb, NGen, exportCSV=False, customizeData=False):
-    #BASE_DIR = 'C:\\Users\\TapperR\\Desktop\\py-ga-VRPTW-master (2)\\py-ga-VRPTW-master'
-    if customizeData:
-        jsonDataDir = os.path.join(BASE_DIR,'data', 'json_customize')
-    else:
-        jsonDataDir = os.path.join(BASE_DIR,'data', 'json')
-    jsonFile = os.path.join(jsonDataDir, '%s.json' % instName)
-    with open(jsonFile) as f:
-        instance = load(f)
+def gaVRPTW(instance, stat_nr, dist_matr, instName, cU, initCost, persCost, indSize, popSize, cxPb, mutPb, NGen):
+    #BASE_DIR = 'C:\\Users\\TapperR\\Desktop\\py-ga-VRPTW-master (2)\\py-ga-VRPTW-master', dist_matr = c, 
     creator.create('FitnessMax', base.Fitness, weights=(1.0,))
     creator.create('Individual', list, fitness=creator.FitnessMax)
     #creator.Individual()
@@ -158,7 +183,7 @@ def gaVRPTW(instName, unitCost, initCost, waitCost, delayCost, persCost, indSize
     toolbox.register('population', tools.initRepeat, list, toolbox.individual)
     #toolbox.population(n=popSize)
     # Operator registering
-    toolbox.register('evaluate', evalVRPTW, instance=instance, unitCost=unitCost, initCost=initCost, waitCost=waitCost, delayCost=delayCost, persCost=persCost)
+    toolbox.register('evaluate', evalVRPTW, instance=instance, dist_matr = dist_matr, cU=cU, initCost=initCost,  persCost=persCost, stat_nr=stat_nr)
     #toolbox.evaluate()
     toolbox.register('select', tools.selRoulette)
     toolbox.register('mate', cxPartialyMatched)
@@ -166,7 +191,7 @@ def gaVRPTW(instName, unitCost, initCost, waitCost, delayCost, persCost, indSize
     #pop[0]
     pop = toolbox.population(n=popSize)
     # Results holders for exporting results to CSV file
-    csvData = []
+    # csvData = []
 #    print('Start of evolution')
     # Evaluate the entire population
     fitnesses = list(map(toolbox.evaluate, pop))
@@ -235,46 +260,24 @@ def gaVRPTW(instName, unitCost, initCost, waitCost, delayCost, persCost, indSize
 #        print('  Avg %s' % mean)
 #        print('  Std %s' % std)
         # Write data to holders for exporting results to CSV file
-        if exportCSV:
-            csvRow = {
-                'generation': g,
-                'evaluated_individuals': len(invalidInd),
-                'min_fitness': min(fits),
-                'max_fitness': max(fits),
-                'avg_fitness': mean,
-                'std_fitness': std,
-            }
-            csvData.append(csvRow)
 #    print('-- End of (successful) evolution --')
     bestInd = tools.selBest(pop, 1)[0]
     
     #### For evaluating the chromosome which is examined in the paper, run this Individual ####
-    #bestInd = creator.Individual([5, 11, 7, 12, 9, 14, 15, 2, 4, 6, 13, 1, 3, 8, 10])
-    #bestInd = creator.Individual([5, 6, 13, 14, 15, 4, 3, 10, 11, 7, 8, 12, 1, 2, 9])
+    #bestInd = creator.Individual([3,4,2,1,5])
+    #bestInd = creator.Individual([2,4,3,5,1])
     #fit = toolbox.evaluate(bestInd)
     #bestInd.fitness.values = fit
     print('Best individual: %s' % bestInd)
     print('Fitness: %s' % bestInd.fitness.values[0])
-    printRoute(ind2route(bestInd, instance))
+    printRoute(ind2route(bestInd, instance, stat_nr, dist_matr))
     print('Total cost: %s' % (1 / bestInd.fitness.values[0]))
-    if exportCSV:
-        csvFilename = '%s_uC%s_iC%s_wC%s_dC%s_iS%s_pS%s_cP%s_mP%s_nG%s.csv' % (instName, unitCost, initCost, waitCost, delayCost, indSize, popSize, cxPb, mutPb, NGen)
-        csvPathname = os.path.join(BASE_DIR, 'results', csvFilename)
-        print('Write to file: %s' % csvPathname)
-        makeDirsForFile(pathname=csvPathname)
-        if not exist(pathname=csvPathname, overwrite=True):
-            with open(csvPathname, 'w') as f:
-                fieldnames = ['generation', 'evaluated_individuals', 'min_fitness', 'max_fitness', 'avg_fitness', 'std_fitness']
-                writer = DictWriter(f, fieldnames=fieldnames, dialect='excel')
-                writer.writeheader()
-                for csvRow in csvData:
-                    writer.writerow(csvRow)
+    print('\n\n\n')
 
 
+    totalCost2 = 1 / bestInd.fitness.values[0]
 
-
-
-
+    return totalCost2
 
 
 ########### Examining each of the deap-tools in detail ############
