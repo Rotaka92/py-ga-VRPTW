@@ -22,6 +22,7 @@ from pyscipopt import Model, quicksum, multidict
 from deap import base, creator, tools
 instName = 'R102a'
 BASE_DIR = 'C:\\Users\\Robin\\py-ga-VRPTW'
+BASE_DIR = 'C:\\Users\\TapperR\\Desktop\\VRP2\\py-ga-VRPTW'
 jsonDataDir = os.path.join(BASE_DIR,'data', 'json')
 jsonFile = os.path.join(jsonDataDir, '%s.json' % instName)
 with open(jsonFile) as f:
@@ -50,7 +51,7 @@ def main():
     initCost = 60.0
     persCost = 0.073667
     
-    indSize = 15
+    indSize = 10
     popSize = 80
     cxPb = 0.7
     mutPb = 0.01

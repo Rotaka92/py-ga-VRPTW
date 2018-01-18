@@ -8,13 +8,42 @@ import pandas as pd
 from csv import DictWriter
 from deap import base, creator, tools
 from operator import attrgetter
+import math
 
 from . import BASE_DIR
 import pandas as pd
 
+BASE_DIR = 'C:\\Users\\TapperR\\Desktop\\VRP2\\py-ga-VRPTW'
+jsonDataDir = os.path.join(BASE_DIR,'data', 'json')
+jsonFile = os.path.join(jsonDataDir, '%s.json' % instName)
+with open(jsonFile) as f:
+    instance = load(f)
+
 #os.chdir('C:\\Users\\TapperR\\Desktop\\VRP2\\py-ga-VRPTW')
 
 
+def distance(x1,y1,x2,y2):
+    return (math.sqrt((x2-x1)**2 + (y2-y1)**2))*1000
+
+
+
+def make_data():
+    I = 10
+    d = [instance['customer_%d'%i]['demand'] for i in range(1,I+1)] # demand         
+    #J,M,f = multidict({0:[8,20], 1:[12,20], 2:[12,20]}) # capacity, fixed costs
+    xDep = [instance['deport%d' %i]['coordinates']['x'] for i in range(3)]
+    yDep = [instance['deport%d' %i]['coordinates']['y'] for i in range(3)]
+    xCust = [instance['customer_%d' %i]['coordinates']['x'] for i in range(1,I+1)]    # positions of the points in the plane
+    yCust = [instance['customer_%d' %i]['coordinates']['y'] for i in range(1,I+1)]
+    x1 = xDep + xCust
+    y1 = yDep + yCust
+    c = {}
+    for i in range(len(x1)):
+        #i = 0
+        for j in range(len(y1)):
+            #j = 1
+            c[i,j] = distance(x1[i],y1[i],x1[j],y1[j])
+    return I,J,d,M,f,c
 
 I,J,d,M,f,c = make_data()
 
@@ -27,8 +56,9 @@ c = {k: c[k] / 1000 for k in c.keys()}
 def ind2route(individual, instance):
     #individual = pop[0], individual = bestInd 
     route = []
-    vehicleCapacity = instance['vehicle_capacity']
-    deportDueTime =  instance['deport']['due_time']   #when the vehicle has to be back 'home'
+    #vehicleCapacity = instance['vehicle_capacity']
+    vehicleCapacity = 10
+    deportDueTime =  instance['deport1']['due_time']   #when the vehicle has to be back 'home'
     ### Initialize a sub-route
     subRoute = []
     vehicleLoad = 0
@@ -84,7 +114,7 @@ def printRoute(route, merge=False):
 
 
 
-unitCost = 800
+#unitCost = 800
 
 
 def evalVRPTW(individual, instance, unitCost=1.0, initCost=0, waitCost=0, delayCost=0):
@@ -150,7 +180,7 @@ def mutInverseIndexes(individual):
     return individual,
 
 
-def gaVRPTW(instName, unitCost, initCost, waitCost, delayCost, indSize, popSize, cxPb, mutPb, NGen, exportCSV=False, customizeData=False):
+def gaVRPTW(instName, unitCost, initCost, indSize, popSize, cxPb, mutPb, NGen, exportCSV=False, customizeData=False):
     #BASE_DIR = 'C:\\Users\\TapperR\\Desktop\\py-ga-VRPTW-master (2)\\py-ga-VRPTW-master'
     if customizeData:
         jsonDataDir = os.path.join(BASE_DIR,'data', 'json_customize')
@@ -172,7 +202,7 @@ def gaVRPTW(instName, unitCost, initCost, waitCost, delayCost, indSize, popSize,
     toolbox.register('population', tools.initRepeat, list, toolbox.individual)
     #toolbox.population(n=popSize)
     # Operator registering
-    toolbox.register('evaluate', evalVRPTW, instance=instance, unitCost=unitCost, initCost=initCost, waitCost=waitCost, delayCost=delayCost)
+    toolbox.register('evaluate', evalVRPTW, instance=instance, unitCost=unitCost, initCost=initCost)
     #toolbox.evaluate()
     toolbox.register('select', tools.selRoulette)
     toolbox.register('mate', cxPartialyMatched)
@@ -180,7 +210,7 @@ def gaVRPTW(instName, unitCost, initCost, waitCost, delayCost, indSize, popSize,
     #pop[0]
     pop = toolbox.population(n=popSize)
     # Results holders for exporting results to CSV file
-    csvData = []
+    #csvData = []
 #    print('Start of evolution')
     # Evaluate the entire population
     fitnesses = list(map(toolbox.evaluate, pop))
@@ -249,22 +279,22 @@ def gaVRPTW(instName, unitCost, initCost, waitCost, delayCost, indSize, popSize,
 #        print('  Avg %s' % mean)
 #        print('  Std %s' % std)
         # Write data to holders for exporting results to CSV file
-        if exportCSV:
-            csvRow = {
-                'generation': g,
-                'evaluated_individuals': len(invalidInd),
-                'min_fitness': min(fits),
-                'max_fitness': max(fits),
-                'avg_fitness': mean,
-                'std_fitness': std,
-            }
-            csvData.append(csvRow)
+#        if exportCSV:
+#            csvRow = {
+#                'generation': g,
+#                'evaluated_individuals': len(invalidInd),
+#                'min_fitness': min(fits),
+#                'max_fitness': max(fits),
+#                'avg_fitness': mean,
+#                'std_fitness': std,
+#            }
+#            csvData.append(csvRow)
 #    print('-- End of (successful) evolution --')
     bestInd = tools.selBest(pop, 1)[0]
     
     #### For evaluating the chromosome which is examined in the paper, run this Individual ####
-    #bestInd = creator.Individual([7, 8, 10, 6, 3, 4, 1, 2, 9, 5])
-    #bestInd = creator.Individual([5, 6, 13, 14, 15, 4, 3, 10, 11, 7, 8, 12, 1, 2, 9])
+    #bestInd = creator.Individual([4, 3, 7, 9, 5, 2, 8, 6, 10, 1])
+    #bestInd = creator.Individual([10, 8, 7, 9, 6, 4, 2, 1, 3, 5])
     #fit = toolbox.evaluate(bestInd)
     #bestInd.fitness.values = fit
     print('Best individual: %s' % bestInd)
