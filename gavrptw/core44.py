@@ -48,7 +48,7 @@ def make_data():
 I,J,d,M,f,c = make_data()
 
 
-c = {k: c[k] / 1000 for k in c.keys()}
+c = {k: c[k] / 60 for k in c.keys()}
 
 
 
