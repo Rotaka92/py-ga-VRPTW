@@ -1,0 +1,1253 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.9 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{nyt/global//global/global}
+  \entry{Bankhofer.2006}{book}{}
+    \name{author}{1}{}{%
+      {{hash=BMWGUW}{%
+         family={Bankhofer},
+         familyi={B\bibinitperiod},
+         suffix={U.\bibnamedelima {\,}\bibnamedelima Wilhelm},
+         suffixi={U\bibinitperiod\bibinitdelim {\,}\bibinitperiod\bibinitdelim
+  W\bibinitperiod},
+         given={M.\bibnamedelima {\,} Williner\bibnamedelima G.},
+         giveni={M\bibinitperiod\bibinitdelim {\,}\bibinitperiod
+  W\bibinitperiod\bibinitdelim G\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{2}{%
+      {{Techn. Univ. Inst. f{\"u}r Wirtschaftsinformatik}}%
+      {Univ.-Bibliothek}%
+    }
+    \strng{namehash}{BUWMWG1}
+    \strng{fullhash}{BUWMWG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2006}
+    \field{labeldatesource}{year}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{isbn}{3-938940-06-9}
+    \field{series}{Ilmenauer Beitr{\"a}ge zur Wirtschaftsinformatik}
+    \field{title}{Modelle und Methoden der Tourenplanung}
+    \verb{url}
+    \verb http://www.db-thueringen.de/servlets/DocumentServlet?id=6905
+    \endverb
+    \field{volume}{5}
+    \list{location}{2}{%
+      {Ilmenau}%
+      {Ilmenau}%
+    }
+    \field{year}{2006}
+  \endentry
+
+  \entry{Beckmann.1969}{book}{}
+    \name{author}{8}{}{%
+      {{hash=BM}{%
+         family={Beckmann},
+         familyi={B\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=HR}{%
+         family={Henn},
+         familyi={H\bibinitperiod},
+         given={R.},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=JA}{%
+         family={Jaeger},
+         familyi={J\bibinitperiod},
+         given={A.},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=KW}{%
+         family={Krelle},
+         familyi={K\bibinitperiod},
+         given={W.},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=KHP}{%
+         family={K{\"u}nzi},
+         familyi={K\bibinitperiod},
+         given={H.\bibnamedelima P.},
+         giveni={H\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+      {{hash=WK}{%
+         family={Wenke},
+         familyi={W\bibinitperiod},
+         given={K.},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=WP}{%
+         family={Wolfe},
+         familyi={W\bibinitperiod},
+         given={Ph.},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=DW}{%
+         family={Dinkelbach},
+         familyi={D\bibinitperiod},
+         given={Werner},
+         giveni={W\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Springer Berlin Heidelberg}}%
+    }
+    \strng{namehash}{BM+1}
+    \strng{fullhash}{BMHRJAKWKHPWKWPDW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{1969}
+    \field{labeldatesource}{year}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \verb{doi}
+    \verb 10.1007/978-3-642-88169-5
+    \endverb
+    \field{isbn}{978-3-642-88170-1}
+    \field{title}{Sensitivit{\"a}tsanalysen und parametrische Programmierung}
+    \field{volume}{12}
+    \list{location}{1}{%
+      {Berlin, Heidelberg}%
+    }
+    \field{year}{1969}
+  \endentry
+
+  \entry{Berger.2003}{article}{}
+    \name{author}{1}{}{%
+      {{hash=BBMJ}{%
+         family={Berger},
+         familyi={B\bibinitperiod},
+         suffix={J.},
+         suffixi={J\bibinitperiod},
+         given={Barkaoui\bibnamedelima M.},
+         giveni={B\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BJBM1}
+    \strng{fullhash}{BJBM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2003}
+    \field{labeldatesource}{year}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{pages}{646\bibrangedash 656}
+    \field{title}{A Hybrid Genetic Algorithm for the Capacitated Vehicle
+  Routing Problem: Defence Research and Development Canada - Valcartier}
+    \field{journaltitle}{Decision Support Technology Section}
+    \field{year}{2003}
+  \endentry
+
+  \entry{büning.2018}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=BKOTCK}{%
+         family={Büning},
+         familyi={B\bibinitperiod},
+         suffix={K.},
+         suffixi={K\bibinitperiod},
+         given={Kramer O. Ting\bibnamedelima C.K.},
+         giveni={K\bibinitperiod\bibinitdelim O\bibinitperiod
+  T\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BKKOTC1}
+    \strng{fullhash}{BKKOTC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2004}
+    \field{labeldatesource}{year}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{title}{Evolutionäre Algorithmen}
+    \verb{url}
+    \verb http://www2.cs.uni-paderborn.de/cs/ag-klbue/de/courses/ws04/ea/studen
+    \verb ts/ga_report.pdf
+    \endverb
+    \field{year}{2004}
+    \field{urlday}{22}
+    \field{urlmonth}{01}
+    \field{urlyear}{2018}
+  \endentry
+
+  \entry{Brendel.2018}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=BO}{%
+         family={Brendel},
+         familyi={B\bibinitperiod},
+         given={O.},
+         giveni={O\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BO1}
+    \strng{fullhash}{BO1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2018}
+    \field{labeldatesource}{year}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{title}{Achtung, die Serviceroboter kommen!}
+    \verb{url}
+    \verb https://www.unternehmerzeitung.ch/de/uz-praxis/digital/achtung-die-se
+    \verb rviceroboter-kommen/
+    \endverb
+    \field{year}{2018}
+    \field{urlday}{21}
+    \field{urlmonth}{01}
+    \field{urlyear}{2018}
+  \endentry
+
+  \entry{Bundschuh.2008}{book}{}
+    \name{author}{1}{}{%
+      {{hash=BM}{%
+         family={Bundschuh},
+         familyi={B\bibinitperiod},
+         given={Markus},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Verlag Dr. Kovac}}%
+    }
+    \strng{namehash}{BM1}
+    \strng{fullhash}{BM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2008}
+    \field{labeldatesource}{year}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{edition}{2}
+    \field{title}{Modellgest{\"u}tzte strategische Planung von
+  Produktionssystemen in der Automobilindustrie. Ein flexibler Planungsansatz
+  f{\"u}r die Fahrzeughauptmodule Motor, Fahrwerk und Antriebsstrang}
+    \list{location}{1}{%
+      {Hamburg}%
+    }
+    \field{year}{2008}
+  \endentry
+
+  \entry{Clarke.1964}{article}{}
+    \name{author}{2}{}{%
+      {{hash=CG}{%
+         family={Clarke},
+         familyi={C\bibinitperiod},
+         given={G.},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=WJW}{%
+         family={Wright},
+         familyi={W\bibinitperiod},
+         given={J.\bibnamedelima W.},
+         giveni={J\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CGWJW1}
+    \strng{fullhash}{CGWJW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{1964}
+    \field{labeldatesource}{year}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{number}{4}
+    \field{pages}{568\bibrangedash 581}
+    \field{title}{Scheduling vehicles from a central delivery depot to a number
+  of delivery points.}
+    \field{journaltitle}{Operational Research}
+    \field{year}{1964}
+  \endentry
+
+  \entry{Clausen.2016}{article}{}
+    \name{author}{4}{}{%
+      {{hash=CU}{%
+         family={Clausen},
+         familyi={C\bibinitperiod},
+         given={U.},
+         giveni={U\bibinitperiod},
+      }}%
+      {{hash=SS}{%
+         family={St{\"u}tz},
+         familyi={S\bibinitperiod},
+         given={S.},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=BA}{%
+         family={BergBergmann},
+         familyi={B\bibinitperiod},
+         given={A.},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=HH}{%
+         family={Henrichmeyer},
+         familyi={H\bibinitperiod},
+         given={H.},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CU+1}
+    \strng{fullhash}{CUSSBAHH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2016}
+    \field{labeldatesource}{year}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{title}{ZF-Zukunftsstudie 2016, Die Letzte Meile}
+    \field{journaltitle}{Fraunhofer Institut}
+    \field{year}{2016}
+  \endentry
+
+  \entry{Domschke.2015}{book}{}
+    \name{author}{4}{}{%
+      {{hash=DW}{%
+         family={Domschke},
+         familyi={D\bibinitperiod},
+         given={Wolfgang},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=DA}{%
+         family={Drexl},
+         familyi={D\bibinitperiod},
+         given={Andreas},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=KR}{%
+         family={Klein},
+         familyi={K\bibinitperiod},
+         given={Robert},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=SA}{%
+         family={Scholl},
+         familyi={S\bibinitperiod},
+         given={Armin},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Springer Berlin Heidelberg}}%
+    }
+    \strng{namehash}{DW+1}
+    \strng{fullhash}{DWDAKRSA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2015}
+    \field{labeldatesource}{year}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \verb{doi}
+    \verb 10.1007/978-3-662-48216-2
+    \endverb
+    \field{edition}{9}
+    \field{isbn}{978-3-662-48215-5}
+    \field{title}{Einf{\"u}hrung in Operations Research}
+    \list{location}{1}{%
+      {Berlin, Heidelberg}%
+    }
+    \field{year}{2015}
+  \endentry
+
+  \entry{Dudek.2005}{article}{}
+    \name{author}{2}{}{%
+      {{hash=DG}{%
+         family={Dudek},
+         familyi={D\bibinitperiod},
+         given={G.},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=SH}{%
+         family={Stadtler},
+         familyi={S\bibinitperiod},
+         given={H.},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{DGSH1}
+    \strng{fullhash}{DGSH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2005}
+    \field{labeldatesource}{year}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{pages}{668\bibrangedash 687}
+    \field{title}{Negotiation-based collaborative planning between supply chain
+  partners}
+    \field{volume}{163}
+    \field{journaltitle}{European Journal of Operations Research}
+    \field{year}{2005}
+  \endentry
+
+  \entry{Ellinger.2003}{book}{}
+    \name{author}{3}{}{%
+      {{hash=ET}{%
+         family={Ellinger},
+         familyi={E\bibinitperiod},
+         given={Theodor},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=BG}{%
+         family={Beuermann},
+         familyi={B\bibinitperiod},
+         given={G{\"u}nter},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=LR}{%
+         family={Leisten},
+         familyi={L\bibinitperiod},
+         given={Rainer},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Springer Berlin Heidelberg}}%
+    }
+    \strng{namehash}{ETBGLR1}
+    \strng{fullhash}{ETBGLR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2003}
+    \field{labeldatesource}{year}
+    \field{sortinit}{E}
+    \field{sortinithash}{E}
+    \verb{doi}
+    \verb 10.1007/978-3-642-55582-4
+    \endverb
+    \field{edition}{6}
+    \field{isbn}{978-3-540-00477-6}
+    \field{title}{Operations Research: Eine Einf{\"u}hrung}
+    \list{location}{1}{%
+      {Berlin, Heidelberg}%
+    }
+    \field{year}{2003}
+  \endentry
+
+  \entry{Macharis.2011}{book}{}
+    \name{author}{1}{}{%
+      {{hash=GVdVEVTR}{%
+         family={Gevaers},
+         familyi={G\bibinitperiod},
+         suffix={R.},
+         suffixi={R\bibinitperiod},
+         given={Van de Voorde; E. Vanelslander\bibnamedelima T.},
+         giveni={V\bibinitperiod\bibinitdelim d\bibinitperiod V\bibinitperiod
+  E\bibinitperiod V\bibinitperiod\bibinitdelim T\bibinitperiod},
+      }}%
+    }
+    \name{editor}{1}{}{%
+      {{hash=MC}{%
+         family={Macharis},
+         familyi={M\bibinitperiod},
+         given={Cathy},
+         giveni={C\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Elgar}%
+    }
+    \strng{namehash}{GRVdVEVT1}
+    \strng{fullhash}{GRVdVEVT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2011}
+    \field{labeldatesource}{year}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{isbn}{9780857932747}
+    \field{series}{Nectar series on transportation and communications networks
+  research}
+    \field{title}{City distribution and urban freight transport: Multiple
+  perspectives}
+    \list{location}{1}{%
+      {Cheltenham}%
+    }
+    \field{year}{2011}
+  \endentry
+
+  \entry{Goncalves.2005}{article}{}
+    \name{author}{3}{}{%
+      {{hash=GJF}{%
+         family={Gon{\c{c}}alves},
+         familyi={G\bibinitperiod},
+         given={J.\bibnamedelima F.},
+         giveni={J\bibinitperiod\bibinitdelim F\bibinitperiod},
+      }}%
+      {{hash=MJ}{%
+         family={{Magalhaes Mendes}},
+         familyi={M\bibinitperiod},
+         given={J.J.d.},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=RM}{%
+         family={Resende},
+         familyi={R\bibinitperiod},
+         given={M.G.C.},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GJFMJRM1}
+    \strng{fullhash}{GJFMJRM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2005}
+    \field{labeldatesource}{year}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \verb{doi}
+    \verb 10.1016/j.ejor.2004.03.012
+    \endverb
+    \field{number}{1}
+    \field{pages}{77\bibrangedash 95}
+    \field{title}{A hybrid genetic algorithm for the job shop scheduling
+  problem}
+    \field{volume}{167}
+    \field{journaltitle}{European Journal of Operational Research}
+    \field{year}{2005}
+  \endentry
+
+  \entry{Hajiaghayi.2003}{article}{}
+    \name{author}{3}{}{%
+      {{hash=HMT}{%
+         family={Hajiaghayi},
+         familyi={H\bibinitperiod},
+         given={M.\bibnamedelima T.},
+         giveni={M\bibinitperiod\bibinitdelim T\bibinitperiod},
+      }}%
+      {{hash=MM}{%
+         family={Mahdian},
+         familyi={M\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=MVS}{%
+         family={Mirrokni},
+         familyi={M\bibinitperiod},
+         given={V.\bibnamedelima S.},
+         giveni={V\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HMTMMMVS1}
+    \strng{fullhash}{HMTMMMVS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2003}
+    \field{labeldatesource}{year}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \verb{doi}
+    \verb 10.1002/net.10080
+    \endverb
+    \field{issn}{0028-3045}
+    \field{number}{1}
+    \field{pages}{42\bibrangedash 47}
+    \field{title}{The facility location problem with general cost functions}
+    \field{volume}{42}
+    \field{journaltitle}{Networks}
+    \field{year}{2003}
+  \endentry
+
+  \entry{Helber.2014}{book}{}
+    \name{author}{1}{}{%
+      {{hash=HS}{%
+         family={Helber},
+         familyi={H\bibinitperiod},
+         given={Stefan},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Helber}%
+    }
+    \strng{namehash}{HS1}
+    \strng{fullhash}{HS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2014}
+    \field{labeldatesource}{year}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{isbn}{9783000469183}
+    \field{title}{Operations-Management-Tutorial: [ein Anf{\"a}nger-Lehrbuch
+  zum Operations-Management f{\"u}r alle, die auch gerne Formeln m{\"o}gen]}
+    \list{location}{1}{%
+      {Hildesheim}%
+    }
+    \field{year}{2014}
+  \endentry
+
+  \entry{Kallrath.2013}{book}{}
+    \name{author}{1}{}{%
+      {{hash=KJ}{%
+         family={Kallrath},
+         familyi={K\bibinitperiod},
+         given={Josef},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Springer Fachmedien Wiesbaden}}%
+    }
+    \strng{namehash}{KJ1}
+    \strng{fullhash}{KJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2013}
+    \field{labeldatesource}{year}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \verb{doi}
+    \verb 10.1007/978-3-658-00690-7
+    \endverb
+    \field{isbn}{978-3-658-00689-1}
+    \field{title}{Gemischt-ganzzahlige Optimierung: Modellierung in der Praxis}
+    \list{location}{1}{%
+      {Wiesbaden}%
+    }
+    \field{year}{2013}
+  \endentry
+
+  \entry{Kamarainen.2001}{article}{}
+    \name{author}{1}{}{%
+      {{hash=KV}{%
+         family={K{\"a}m{\"a}r{\"a}inen},
+         familyi={K\bibinitperiod},
+         given={V.},
+         giveni={V\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KV1}
+    \strng{fullhash}{KV1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2001}
+    \field{labeldatesource}{year}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{number}{31.6}
+    \field{pages}{414\bibrangedash 426}
+    \field{title}{The reception box impact on home delivery efficiency in the
+  e-grocery business}
+    \field{journaltitle}{International Journal of Physical Distribution {\&}
+  Logistics, MCB University Press}
+    \field{year}{2001}
+  \endentry
+
+  \entry{Kleinschmidt.2017}{book}{}
+    \name{author}{1}{}{%
+      {{hash=KA}{%
+         family={Kleinschmidt},
+         familyi={K\bibinitperiod},
+         given={A.},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Masterarbeit am Institut f{\"u}r Wirtschaftsinformatik der Leibniz
+  Universit{\"a}t Hannover}}%
+    }
+    \strng{namehash}{KA1}
+    \strng{fullhash}{KA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2017}
+    \field{labeldatesource}{year}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{title}{Optimierungspotentiale in der urbanen Logistik --
+  Lieferroboter in der Last-Mile-Delivery}
+    \field{year}{2017}
+  \endentry
+
+  \entry{Kling.2018}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=KP}{%
+         family={Kling},
+         familyi={K\bibinitperiod},
+         given={P.},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KP1}
+    \strng{fullhash}{KP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2008}
+    \field{labeldatesource}{year}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{title}{Facility Location}
+    \verb{url}
+    \verb https://www2.math.uni-paderborn.de/fileadmin/Mathematik/AG-Eisenbrand
+    \verb /teaching/NetdesignWS0708/Peter-Facility-Location-Ausarbeitung.pdf
+    \endverb
+    \field{year}{2008}
+    \field{urlday}{22}
+    \field{urlmonth}{01}
+    \field{urlyear}{2018}
+  \endentry
+
+  \entry{KochJ.AnkenbauerM.SchellO..2004}{book}{}
+    \name{author}{1}{}{%
+      {{hash=K}{%
+         family={{Koch, J., Ankenbauer, M., Schell, O.}},
+         familyi={K\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{K1}
+    \strng{fullhash}{K1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2004}
+    \field{labeldatesource}{year}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{title}{Last-Mile-Logistics: Best Practices, Transcare AG}
+    \list{location}{1}{%
+      {Wiesbaden}%
+    }
+    \field{year}{2004}
+  \endentry
+
+  \entry{LeeH.L.undWhangS..2001}{article}{}
+    \name{author}{1}{}{%
+      {{hash=L}{%
+         family={{Lee, H.L. und Whang, S.}},
+         familyi={L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{L1}
+    \strng{fullhash}{L1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2001}
+    \field{labeldatesource}{year}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{number}{42.4}
+    \field{pages}{54\bibrangedash 62}
+    \field{title}{Winning the last mile of e-commerce.}
+    \field{journaltitle}{Sloan Management Review}
+    \field{year}{2001}
+  \endentry
+
+  \entry{Lehmacher.2015}{book}{}
+    \name{author}{1}{}{%
+      {{hash=LW}{%
+         family={Lehmacher},
+         familyi={L\bibinitperiod},
+         given={Wolfgang},
+         giveni={W\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Springer Fachmedien Wiesbaden}}%
+    }
+    \strng{namehash}{LW1}
+    \strng{fullhash}{LW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2015}
+    \field{labeldatesource}{year}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \verb{doi}
+    \verb 10.1007/978-3-658-07774-7
+    \endverb
+    \field{isbn}{978-3-658-07773-0}
+    \field{title}{Logistik im Zeichen der Urbanisierung: Versorgung von Stadt
+  und Land im digitalen und mobilen Zeitalter.}
+    \list{location}{1}{%
+      {Wiesbaden}%
+    }
+    \field{year}{2015}
+  \endentry
+
+  \entry{Masum.2011}{article}{}
+    \name{author}{4}{}{%
+      {{hash=MM}{%
+         family={Masum},
+         familyi={M\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Shahjalai},
+         familyi={S\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=FF}{%
+         family={Faruque},
+         familyi={F\bibinitperiod},
+         given={F.},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=SH}{%
+         family={Sarker},
+         familyi={S\bibinitperiod},
+         given={H.},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MM+1}
+    \strng{fullhash}{MMSMFFSH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2011}
+    \field{labeldatesource}{year}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{number}{2.7}
+    \field{pages}{126\bibrangedash 131}
+    \field{title}{Solving the Vehicle Routing Problem using Genetic Algorithm}
+    \field{journaltitle}{International Journal of Advanced Computer Science and
+  Applications}
+    \field{year}{2011}
+  \endentry
+
+  \entry{Mikuteit.2017}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=MHL}{%
+         family={Mikuteit},
+         familyi={M\bibinitperiod},
+         given={H.-L.},
+         giveni={H\bibinitperiod-L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MHL1}
+    \strng{fullhash}{MHL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2017}
+    \field{labeldatesource}{year}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{title}{Lieferroboter jetzt auch f{\"u}r kleine L{\"a}den in Hamburg}
+    \verb{url}
+    \verb https://www.abendblatt.de/hamburg/article212799327/Lieferroboter-jetz
+    \verb t-auch-fuer-kleine-Laeden-in-Hamburg.html
+    \endverb
+    \field{year}{2017}
+    \field{urlday}{16}
+    \field{urlmonth}{01}
+    \field{urlyear}{2018}
+  \endentry
+
+  \entry{Misener.2014}{article}{}
+    \name{author}{2}{}{%
+      {{hash=MR}{%
+         family={Misener},
+         familyi={M\bibinitperiod},
+         given={Ruth},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=FCA}{%
+         family={Floudas},
+         familyi={F\bibinitperiod},
+         given={Christodoulos\bibnamedelima A.},
+         giveni={C\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MRFCA1}
+    \strng{fullhash}{MRFCA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2014}
+    \field{labeldatesource}{year}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \verb{doi}
+    \verb 10.1007/s10898-014-0166-2
+    \endverb
+    \field{issn}{0925-5001}
+    \field{number}{2-3}
+    \field{pages}{503\bibrangedash 526}
+    \field{title}{ANTIGONE: Algorithms for coNTinuous / Integer Global
+  Optimization of Nonlinear Equations}
+    \field{volume}{59}
+    \field{journaltitle}{Journal of Global Optimization}
+    \field{year}{2014}
+  \endentry
+
+  \entry{Ostfeld.2004}{article}{}
+    \name{author}{2}{}{%
+      {{hash=OA}{%
+         family={Ostfeld},
+         familyi={O\bibinitperiod},
+         given={A.},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SE}{%
+         family={Salomons},
+         familyi={S\bibinitperiod},
+         given={E.},
+         giveni={E\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{OASE1}
+    \strng{fullhash}{OASE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2004}
+    \field{labeldatesource}{year}
+    \field{sortinit}{O}
+    \field{sortinithash}{O}
+    \field{number}{5}
+    \field{pages}{377\bibrangedash 385}
+    \field{title}{Optimal layout of early warning detection stations for water
+  distribution systems security}
+    \field{volume}{130}
+    \field{journaltitle}{Journal of Water Resources Planning and
+  Management-Asce}
+    \field{year}{2004}
+  \endentry
+
+  \entry{Punakivi.2001}{article}{}
+    \name{author}{2}{}{%
+      {{hash=PM}{%
+         family={Punakivi},
+         familyi={P\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SJ}{%
+         family={Saranen},
+         familyi={S\bibinitperiod},
+         given={J.},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PMSJ1}
+    \strng{fullhash}{PMSJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2001}
+    \field{labeldatesource}{year}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{number}{29.4}
+    \field{pages}{156\bibrangedash 163}
+    \field{title}{Identifying the success factors in e-grocery home delivery}
+    \field{journaltitle}{International Journal of Retail {\&} Distribution
+  Management}
+    \field{year}{2001}
+  \endentry
+
+  \entry{Rieck.2007}{article}{}
+    \name{author}{3}{}{%
+      {{hash=RJ}{%
+         family={Rieck},
+         familyi={R\bibinitperiod},
+         given={Julia},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=ZJ}{%
+         family={Zimmermann},
+         familyi={Z\bibinitperiod},
+         given={J{\"u}rgen},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=GM}{%
+         family={Glagow},
+         familyi={G\bibinitperiod},
+         given={Matthias},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{RJZJGM1}
+    \strng{fullhash}{RJZJGM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2007}
+    \field{labeldatesource}{year}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{number}{4}
+    \field{pages}{365\bibrangedash 388}
+    \field{title}{Tourenplanung mittelst{\"a}ndischer Speditionsunternehmen in
+  St{\"u}ckgutkooperationen: Modellierung und heuristische
+  L{\"o}sungsverfahren}
+    \field{volume}{17}
+    \field{journaltitle}{Zeitschrift f{\"u}r Planung {\&}
+  Unternehmenssteuerung}
+    \field{year}{2007}
+  \endentry
+
+  \entry{Salema.2008}{article}{}
+    \name{author}{3}{}{%
+      {{hash=SMIG}{%
+         family={Salema},
+         familyi={S\bibinitperiod},
+         given={Maria Isabel\bibnamedelima Gomes},
+         giveni={M\bibinitperiod\bibinitdelim I\bibinitperiod\bibinitdelim
+  G\bibinitperiod},
+      }}%
+      {{hash=PAPB}{%
+         family={Povoa},
+         familyi={P\bibinitperiod},
+         given={Ana Paula\bibnamedelima Barbosa},
+         giveni={A\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim
+  B\bibinitperiod},
+      }}%
+      {{hash=NAQ}{%
+         family={Novais},
+         familyi={N\bibinitperiod},
+         given={Augusto\bibnamedelima Q.},
+         giveni={A\bibinitperiod\bibinitdelim Q\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SMIGPAPBNAQ1}
+    \strng{fullhash}{SMIGPAPBNAQ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2008}
+    \field{labeldatesource}{year}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{title}{A strategic and tactical model for closed-loop supply chains}
+    \verb{url}
+    \verb Online First DOI 10.1007/s00291-008-0160-5
+    \endverb
+    \field{journaltitle}{OR Spectrum}
+    \field{year}{2008}
+  \endentry
+
+  \entry{Scholl.2009}{article}{}
+    \name{author}{3}{}{%
+      {{hash=SA}{%
+         family={Scholl},
+         familyi={S\bibinitperiod},
+         given={Armin},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=FM}{%
+         family={Fliedner},
+         familyi={F\bibinitperiod},
+         given={Malte},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=BN}{%
+         family={Boysen},
+         familyi={B\bibinitperiod},
+         given={Nils},
+         giveni={N\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SAFMBN1}
+    \strng{fullhash}{SAFMBN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2009}
+    \field{labeldatesource}{year}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{title}{ABSALOM: Balancing assembly lines with assignment
+  restrictions}
+    \verb{url}
+    \verb Online First DOI 10.1016/j.ejor.2009.01.049
+    \endverb
+    \field{journaltitle}{European Journal of Operational Research}
+    \field{year}{2009}
+  \endentry
+
+  \entry{Thanh.2008}{article}{}
+    \name{author}{3}{}{%
+      {{hash=TPN}{%
+         family={Thanh},
+         familyi={T\bibinitperiod},
+         given={Phuong\bibnamedelima Nga},
+         giveni={P\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+      {{hash=BN}{%
+         family={Bostel},
+         familyi={B\bibinitperiod},
+         given={Nathalie},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=PO}{%
+         family={P{\'e}ton},
+         familyi={P\bibinitperiod},
+         given={Olivier},
+         giveni={O\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{TPNBNPO1}
+    \strng{fullhash}{TPNBNPO1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2008}
+    \field{labeldatesource}{year}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \field{number}{2}
+    \field{pages}{678\bibrangedash 693}
+    \field{title}{A dynamic model for facility location in the design of
+  complex supply chains}
+    \field{volume}{113}
+    \field{journaltitle}{International Journal of Production Economics}
+    \field{year}{2008}
+  \endentry
+
+  \entry{Thirumalai.2005}{article}{}
+    \name{author}{2}{}{%
+      {{hash=TS}{%
+         family={Thirumalai},
+         familyi={T\bibinitperiod},
+         given={Sriram},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=SKK}{%
+         family={Sinha},
+         familyi={S\bibinitperiod},
+         given={Kingshuk\bibnamedelima K.},
+         giveni={K\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{TSSKK1}
+    \strng{fullhash}{TSSKK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2005}
+    \field{labeldatesource}{year}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \verb{doi}
+    \verb 10.1016/j.jom.2004.10.015
+    \endverb
+    \field{issn}{02726963}
+    \field{number}{3-4}
+    \field{pages}{291\bibrangedash 303}
+    \field{title}{Customer satisfaction with order fulfillment in retail supply
+  chains: Implications of product type in electronic B2C transactions}
+    \field{volume}{23}
+    \field{journaltitle}{Journal of Operations Management}
+    \field{year}{2005}
+  \endentry
+
+  \entry{V.2018a}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=Vo}{%
+         family={V},
+         familyi={V},
+         given={o.},
+         giveni={o\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{Vo1}
+    \strng{fullhash}{Vo1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2018a}
+    \field{labeldatesource}{year}
+    \field{sortinit}{V}
+    \field{sortinithash}{V}
+    \field{title}{Anteil der in St{\"a}dten lebenden Bev{\"o}lkerung in
+  Deutschland und weltweit von 1950 bis 2010 und Prognose bis 2030}
+    \verb{url}
+    \verb https://de.statista.com/statistik/daten/studie/152879/umfrage/in-stae
+    \verb dten-lebende-bevoelkerung-in-deutschland-und-weltweit/
+    \endverb
+    \field{year}{2018a}
+    \field{urlday}{16}
+    \field{urlmonth}{01}
+    \field{urlyear}{2018}
+  \endentry
+
+  \entry{V.2018b}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=Vo}{%
+         family={V},
+         familyi={V},
+         given={o.},
+         giveni={o\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{Vo1}
+    \strng{fullhash}{Vo1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2018b}
+    \field{labeldatesource}{year}
+    \field{sortinit}{V}
+    \field{sortinithash}{V}
+    \field{title}{Umsatz durch E-Commerce (B2C) in Deutschland in den Jahren
+  1999 bis 2016 sowie eine Prognose f{\"u}r 2017}
+    \verb{url}
+    \verb https://de.statista.com/statistik/daten/studie/3979/umfrage/e-commerc
+    \verb e-umsatz-in-deutschland-seit-1999/
+    \endverb
+    \field{year}{2018b}
+    \field{urlday}{16}
+    \field{urlmonth}{01}
+    \field{urlyear}{2018}
+  \endentry
+
+  \entry{V.2018c}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=Vo}{%
+         family={V},
+         familyi={V},
+         given={o.},
+         giveni={o\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{Vo1}
+    \strng{fullhash}{Vo1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2018c}
+    \field{labeldatesource}{year}
+    \field{sortinit}{V}
+    \field{sortinithash}{V}
+    \field{title}{Retail e-commerce sales worldwide from 2014 to 2021}
+    \verb{url}
+    \verb https://www.statista.com/statistics/379046/worldwide-retail-e-commerc
+    \verb e-sales/
+    \endverb
+    \field{year}{2018c}
+    \field{urlday}{16}
+    \field{urlmonth}{01}
+    \field{urlyear}{2018}
+  \endentry
+
+  \entry{VanAudenhoveF.J.DuranceM.DeJonghS..2015}{book}{}
+    \name{author}{1}{}{%
+      {{hash=V}{%
+         family={{Van Audenhove, F. J., Durance, M., De Jongh, S.}},
+         familyi={V\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{V1}
+    \strng{fullhash}{V1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2015}
+    \field{labeldatesource}{year}
+    \field{sortinit}{V}
+    \field{sortinithash}{V}
+    \field{title}{Urban Logistics - How to unlock value from last mile delivery
+  for cities, transporters and retailers. Arthur D. Little Future of Urban
+  Mobility Lab.}
+    \field{year}{2015}
+  \endentry
+\enddatalist
+\endinput

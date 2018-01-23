@@ -25,7 +25,8 @@ import math
 # loading the instance for getting informations about customers 
 # and depots
 instName = 'R102a'
-BASE_DIR = 'C:\\Users\\TapperR\\Desktop\\VRP2\\py-ga-VRPTW'
+#BASE_DIR = 'C:\\Users\\TapperR\\Desktop\\VRP2\\py-ga-VRPTW'
+BASE_DIR = 'C:\\Users\\Robin\\py-ga-VRPTW'
 jsonDataDir = os.path.join(BASE_DIR,'data', 'json')
 jsonFile = os.path.join(jsonDataDir, '%s.json' % instName)
 with open(jsonFile) as f:
@@ -307,10 +308,9 @@ def gaVRPTW(instance, instName, initCost, indSize,\
     #examined in the paper, run this Individual ####
     
     #bestInd = creator.Individual([4, 3, 7, 9, 5, 2, 8, 6, 10, 1])
-    #bestInd = creator.Individual([10, 8, 7, 9, 6, 4, 2, 1, 3, 5])
+    #bestInd = creator.Individual([10, 8, 7, 9, 4, 3, 2, 6, 5, 1])
     #fit = toolbox.evaluate(bestInd)
     #bestInd.fitness.values = fit
-    
     print('Best individual: %s' % bestInd)
     print('Fitness: %s' % bestInd.fitness.values[0])
     printRoute(ind2route(bestInd, instance, c))

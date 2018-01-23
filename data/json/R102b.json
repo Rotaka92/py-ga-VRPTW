@@ -1,0 +1,137 @@
+{
+    "customer_1": {
+        "coordinates": {
+            "x": 1.0,
+            "y": 1.3
+        },
+        "demand": 1.0,
+        "due_time": 900.0,
+        "ready_time": 720.0,
+        "service_time": 10.0
+    },
+    "customer_10": {
+        "coordinates": {
+            "x": 2.4,
+            "y": 0.8
+        },
+        "demand": 2.0,
+        "due_time": 1200.0,
+        "ready_time": 900.0,
+        "service_time": 10.0
+    },
+    "customer_2": {
+        "coordinates": {
+            "x": 0.4,
+            "y": 1.2
+        },
+        "demand": 1.0,
+        "due_time": 720.0,
+        "ready_time": 480.0,
+        "service_time": 10.0
+    },
+    "customer_3": {
+        "coordinates": {
+            "x": 1.5,
+            "y": 0.8
+        },
+        "demand": 1.0,
+        "due_time": 720.0,
+        "ready_time": 480.0,
+        "service_time": 10.0
+    },
+    "customer_4": {
+        "coordinates": {
+            "x": 0.4,
+            "y": 0.3
+        },
+        "demand": 1.0,
+        "due_time": 840.0,
+        "ready_time": 480.0,
+        "service_time": 10.0
+    },
+    "customer_5": {
+        "coordinates": {
+            "x": 1.8,
+            "y": 1.7
+        },
+        "demand": 15.0,
+        "due_time": 1200.0,
+        "ready_time": 960.0,
+        "service_time": 10.0
+    },
+    "customer_6": {
+        "coordinates": {
+            "x": 0.6,
+            "y": 2.6
+        },
+        "demand": 2.0,
+        "due_time": 1140.0,
+        "ready_time": 900.0,
+        "service_time": 10.0
+    },
+    "customer_7": {
+        "coordinates": {
+            "x": 1.8,
+            "y": 2.7
+        },
+        "demand": 2.0,
+        "due_time": 1200.0,
+        "ready_time": 1020.0,
+        "service_time": 10.0
+    },
+    "customer_8": {
+        "coordinates": {
+            "x": 2.6,
+            "y": 2.0
+        },
+        "demand": 2.0,
+        "due_time": 840.0,
+        "ready_time": 540.0,
+        "service_time": 10.0
+    },
+    "customer_9": {
+        "coordinates": {
+            "x": 1.4,
+            "y": 2.2
+        },
+        "demand": 2.0,
+        "due_time": 780.0,
+        "ready_time": 540.0,
+        "service_time": 10.0
+    },
+    "deport0": {
+        "coordinates": {
+            "x": 0.8,
+            "y": 2.0
+        },
+        "demand": 0.0,
+        "due_time": 1320.0,
+        "ready_time": 480.0,
+        "service_time": 0.0
+    },
+    "deport1": {
+        "coordinates": {
+            "x": 1.6,
+            "y": 1.0
+        },
+        "demand": 0.0,
+        "due_time": 1200.0,
+        "ready_time": 480.0,
+        "service_time": 0.0
+    },
+    "deport2": {
+        "coordinates": {
+            "x": 2.0,
+            "y": 2.3
+        },
+        "demand": 0.0,
+        "due_time": 1200.0,
+        "ready_time": 480.0,
+        "service_time": 0.0
+    },
+    "instance_name": "R102a",
+    "max_vehicle_number": 25,
+    "vehicle_capacity": 4.0,
+	"accpower_time": 324,
+	"accpower_len": 9800
+}
