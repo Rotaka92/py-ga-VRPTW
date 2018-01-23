@@ -114,7 +114,7 @@ def distance(x1,y1,x2,y2):
 
 def make_data():
     I = 10
-    d = [instance['customer_%d'%i]['demand'] for i in range(1,I+1)] # demand         
+    d = [instance['customer_%d'%i]['demand']for i in range(1,I+1)] # demand         
     J,M,f = multidict({0:[8,20], 1:[20,20], 2:[20,20]}) # capacity, fixed costs
     xDep = [instance['deport%d' %i]['coordinates']['x'] for i in range(len(J))]
     yDep = [instance['deport%d' %i]['coordinates']['y'] for i in range(len(J))]

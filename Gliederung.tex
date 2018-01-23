@@ -683,7 +683,7 @@ Die Routen der vier Touren der zweiten Basisstation sind folgende:
 
 \begin{equation} \label{eq:test}
     \begin{aligned} 
-         Fahrzeug 1&: 0 - 6 - 7 - 0 \\
+         Fahrzeug 1&: 0 - 5 - 6 - 0 \\
         Fahrzeug 2&: 0 - 13 - 0\\
         Fahrzeug 3&: 0 - 4 - 7 - 0\\
         Fahrzeug 2&: 0 - 8 - 0\\
@@ -751,7 +751,7 @@ Zusätzlich zu der Erweiterung des Modells durch das Zulassen der Belieferung vo
 
 \subsection{Zulassen von mehreren Belieferungen je Kundenort}
 
-Aufgrund der stark eingeschränkten Kapazität des Fahrzeugs muss eine Tour häufig bereits nach wenigen Kunden abgebrochen werden, sodass es eine sinnvolle Erweiterung des Modells wäre, wenn jeder Kunde zusätzlich von weiteren Robotern, die sich auf anderen Touren befinden, beliefert werden könnten.
+Aufgrund der stark eingeschränkten Kapazität des Fahrzeugs muss eine Tour häufig bereits nach wenigen Kunden abgebrochen werden, sodass es eine sinnvolle Erweiterung des Modells wäre, wenn jeder Kunde zusätzlich von weiteren Robotern, die sich auf anderen Touren befinden, beliefert werden könnte.
 Ein Kunde mit einer Nachfrage von $d_{i} = 1$ könnte dann von einem Lieferroboter beliefert werden, der noch ein Compartement frei hätte auf seiner bereits bestehenden Tour, sein nächster Kunde jedoch 2 Compartements für sich in Anspruch nehmen würde.
 Dabei muss bereits in den Algorithmus zur Lösung des dem EVRP vorangegangenen  FLP eingegriffen werden, wobei Restriktion (\ref{eq:test1}) aus dem Modell entfernt wird, um so zu gewährleisten, dass bereits im FLP jedem Kunden mehr als eine Basisstation zugeordnet werden kann.
 Diese Information muss dann der Instanz, die nach dem Teilen der Gesamtinstanz für eine Basisstation übrig bleibt, zusätzlich hinzugefügt werden, ehe der genetische Algorithmus auf die Teilinstanz als Ausgangspunkt für seine Berechnungen zurückgreift.
@@ -777,10 +777,76 @@ Diese Information muss dann der Instanz, die nach dem Teilen der Gesamtinstanz f
 \subsection{Diskussion der erweiterten Modelle}
 
 Nach einer Vielzahl an Untersuchungen nach Änderungen der Variable c konnte es nicht gelingen, durch den Algorithmus zur Lösung des FLP ein Resultat zu erhalten, welches einen Kunden zu zwei Basisstationen zuwies.
-So besteht hier ein deutlicher Unterschied zu der Lösung, die durch das erweiterte GAMS-Modell gefunden wurde, als die Restriktion aufgehoben wurde, die einem Kunden stets eine Basisstation zugewiesen hat. 
+So besteht hier ein deutlicher Unterschied zu der Lösung, die durch das erweiterte GAMS-Modell gefunden wurde, als die Restriktion, die einem Kunden stets eine Basisstation zugewiesen hat, aufgehoben wurde.
+Erst nachdem die Nachfrage $d_{i}$ des Kunden 8 auf den Wert 15 hochgesetzt wird, wobei alle weiteren Variablen ceteris paribus gleich bleiben, gelangt man für diesen Kunden durch den Algorithmus zu einer Lösung, die diesen Kunden zu den Basisstationen zwei und drei zuweist.
+Dabei erhält Kunde 8 aus der Basisstation zwei drei Einheiten und aus Basisstation drei 12 Einheiten, sodass auch die Ladekapazität des Lieferroboters auf 12 Einheiten hochgesetzt wird.
 
-Erst nachdem die Nachfrage $d_{i}$ des Kunden 8 auf den Wert 15 hochgesetzt wird, wobei alle weiteren Variablen ceteris paribus gleich bleiben, gelangt man für diesen Kunden durch den Algorithmus zu einer Lösung, die diesen Kunden zu den Basisstationen 2 und 3 zuweist.
-Dabei erhält Kunde 8 aus der Basisstation 2
+
+\begin{table}[h!]
+    \vspace*{-3mm}
+    \hspace*{2mm}
+  \renewcommand{\arraystretch}{1,5}
+  \caption{Lösungen der sequentiellen Herangehensweise
+  }
+  \begin{center}
+ 
+    \begin{tabular}{|l|l|l|l|} \hline
+    \textbf{Gesamtkosten (GE)} &\textbf{BS} &\textbf{Anzahl Touren}&\textbf{ Rechenzeit} (Sek)\\\hline
+     925,659 & 2;3 & 8 & 1,4890\\\hline   
+	\end{tabular}
+	  \end{center}
+\end{table}
+
+
+Die Routen der vier Touren der zweiten Basisstation sind folgende: 
+
+\begin{equation} \label{eq:test}
+    \begin{aligned} 
+         Fahrzeug 1&: 0 - 8 - 0 \\
+        Fahrzeug 2&: 0 - 13 - 0\\
+        Fahrzeug 3&: 0 - 6 - 5 - 0\\
+        Fahrzeug 2&: 0 - 1 - 4 - 0\\
+    \end{aligned}
+\end{equation}\\
+
+Die Routen der drei Touren der dritten Basisstation sind folgende: 
+
+\begin{equation} \label{eq:test}
+    \begin{aligned} 
+         Fahrzeug 1&: 0 - 9 - 0 \\
+        Fahrzeug 2&: 0 - 8 - 0\\
+         Fahrzeug 3&: 0 - 10 - 0\\
+         Fahrzeug 4&: 0 - 11 - 12 - 0\\
+    \end{aligned}
+\end{equation}
+
+
+Auffällig ist zum einen, dass die Bearbeitungszeit marginal länger ist im Vergleich zu der aus dem vorherigen Modell. 
+Zum anderen wird deutlich, dass nun 8 Lieferroboter anstatt 7 durch den Algorithmus zur Lösung des VRP den Kunden zugewiesen werden, was lediglich darauf zurückzuführen ist, dass der 8. Kunde nun auch von der Basisstation 3 beliefert werden kann.
+Es hat demnach keinerlei Auswirkungen auf das Ergebnis, wie hoch die maximale Kapazität der Basistationen (hochgesetzt auf 20) bzw. der Lieferroboter (hochgesetzt auf 12) sind, was für eine weiterführende Sensitivitätsanalyse von großer Bedeutung ist, da diese im GAMS-Modell noch zu anderen Ergebnissen bzgl. des Parameters $Comp$ gelangte.
+Eine ausführliche Sensitivitätsanalyse würde in dieser metaheuristischen Herangehensweise jedoch den Rahmen sprengen, wäre allerdings für weitere Nachforschungen von großer Relevanz.\\
+
+
+\begin{figure}[h!]
+  \begin{center}
+      \includegraphics[width=100mm]{vrp33a.png}
+    \caption{Lösung mit genetischem Algorithmus}  \label{Typen}
+  \end{center}
+\end{figure}
+
+
+\begin{figure}[h!]
+  \begin{center}
+    \includegraphics[width=150mm]{zf1.jpg}
+    \caption{Zeitfenster für die Lösung mit GA}  \label{Typen}
+  \end{center}
+\end{figure}
+
+
+
+Abschließend ist noch zu erwähnen, dass der Algorithmus in der kurzen Bearbeitungszeit lediglich so weit entwickelt werden konnte, dass er Informationen im Fall von zwei verschiedenen Basisstationen, die sich auf einen Kunden beziehen, weitergeben kann.
+Für den Fall, dass die Auflösung des FLP ergibt, dass ein Kunde von drei verschiedenen Basisstationen beliefert wird, übermittelt der Algorithmus eine Fehlermeldung.
+Somit ist hier viel Raum für Nachforschungen entstanden, um den Algorithmus auf eine allgemeine Problemstellung anwenden zu können, gerade im Hinblick darauf, dass ein metaheuristisches Verfahren wie es der genetische Algorithmus darstellt erst ab einer bestimmten Instanzgröße sein volles Potential zum Ausdruck bringen kann.
 
 
 
@@ -1772,6 +1838,212 @@ def gaVRPTW(instance, stat_nr, dist_matr, instName,\
     totalCost2 = 1 / bestInd.fitness.values[0]
 
     return totalCost2
+
+\end{lstlisting}
+
+\section{Python-Code für das erweiterte Modell}
+
+\begin{lstlisting}
+
+
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Jan  7 11:24:15 2018
+
+@author: Robin Tappert
+"""
+
+import time
+#starting the stop watch
+t0 = time.time()
+
+import random
+
+#loading the GA for the EVRP-TW
+from gavrptw.core4 import gaVRPTW
+
+#solving the FLP with this file
+from gavrptw.flp4 import make_data, flp
+
+
+import os
+from json import load
+instName = 'R102b'
+
+#type in the path of the direct, where the folder gavrptw is in
+#for loading the instance
+BASE_DIR = 'C:\\Users\\Robin\\py-ga-VRPTW'
+#BASE_DIR = 'C:\\Users\\TapperR\\Desktop\\VRP2\\py-ga-VRPTW'
+jsonDataDir = os.path.join(BASE_DIR,'data', 'json')
+jsonFile = os.path.join(jsonDataDir, '%s.json' % instName)
+with open(jsonFile) as f:
+    instance = load(f)
+
+def main():
+
+    
+    
+    
+    cp = 0.073667        #Cost per employed person in depot per minute
+    cU = 0.01              #Cost per entity of distance 
+        
+    instName = 'R102b'
+    
+    initCost = 80.0     #cost per initialization a new roboter
+    persCost = 0.073667 #cp? cp in FLP, pers in GA -> TEST IT
+    
+    indSize = 10        #length of a chromosom
+    popSize = 80        #Size of the population
+    cxPb = 0.7          #Probability for a crossover
+    mutPb = 0.01        #Probability for a mutation
+    NGen = 100          #Number of iterations 
+    
+    
+    I,J,d,M,f,c = make_data()   #make data for the flp
+    model = flp(I,J,d,M,f,c,cp,cU)  #establish the flp
+    model.optimize()            #solve the flp
+    
+    
+    
+    
+    EPS = 1.e-9
+    x,y,y2 = model.data
+    edges = [(i,j) for (i,j) in x if model.getVal(x[i,j]) > EPS]
+    facilities = [j for j in y if model.getVal(y[j]) > EPS]
+    if len(edges)>I:
+        print("Optimal value:", model.getObjVal())
+        print("Facilities at nodes:", facilities)
+        print("Edges:", edges)
+        
+        
+    
+    [model.getVal(model.data[2][i,k]) for i in range(I) for k in J]
+
+
+    #####################################################
+    ##### MOST IMPORTANT CHANGE OF THE ALGORITHM ########
+   ##########################################################
+    instanceAll = {}
+    
+    #### dividing the instance in three sub-instances ####
+    #reopening the full instance
+    for j in J:  
+        #j = 0     
+        jsonFile = os.path.join(jsonDataDir, '%s.json' % instName)
+        with open(jsonFile) as f:
+            instance = load(f)
+            
+        for i in range(1,I+1):
+            #i = 1
+            for k in J:
+                #k = 0                
+                    instance['customer_%d' % i]['get_from']  =\
+                    [round(model.getVal(model.data[0]\
+                                        [i-1, k])) for k in J]
+            
+    
+    #tupel: which station does the customer belong to and
+    #       which customer in row is it for the station           
+        f = [0,0,0] 
+        for i in range(1,I+1):
+            instance['customer_%d' % i]['belongs_to'] = []
+            #i = 1
+            for k in J:
+                 #k = 1
+                if round(model.getVal(model.data[2][i-1,k]),1) == 1.0:             
+                    instance['customer_%d' % i]\
+                    ['belongs_to'].append([k, f[k]])
+                    f[k] = f[k]+1
+
+    #pop out the customer which does not belong to the explicit station
+    #and filling up the instance ###
+    #lot of space for improvement here!!!! #####
+        for i in range(1,I+1):
+            #i = 5, j = 2
+            
+            if len(instance['customer_%d' % i]['belongs_to']) == 2:
+                for p in range(2):
+                    #p = 1
+                    ### lot of space for improvement here!!!!
+                    #counts only for two different stations, not in\
+                    #case of 3 as mentioned in the paper#####
+                    
+                    if instance['customer_%d' % i]\
+                    ['belongs_to'][0][0] != j\
+                     and instance['customer_%d' % i]\
+                     ['belongs_to'][1][0] != j:
+                        instance.pop('customer_%d' % i)
+                        break
+                    elif instance['customer_%d' % i]\
+                    ['belongs_to'][p][0] != j:
+                        del instance['customer_%d' % i]\
+                        ['belongs_to'][p]
+                                    #does it count in general?
+                        instance['customer_%d' % i]['demand'] =\
+                        instance['customer_%d' % i]['get_from'][j]
+                        break
+                    
+            elif instance['customer_%d' % i]['belongs_to'][0][0] != j:
+                instance.pop('customer_%d' % i)
+            
+    
+    
+        
+    
+        instanceAll['instance_%d' %j] = instance
+        
+    p = 0
+  
+    #run the genetic algorithm for a certain depot with
+    #its particular instance 
+    for j in J:
+        #j = 1
+        instance=instanceAll['instance_%d' %j]
+        indSize=len(instance)-8
+        if indSize != 0:
+            t = gaVRPTW(
+                instance=instance,
+                stat_nr=j,
+                dist_matr = c,
+                instName=instName,
+                cU=cU,
+                initCost=initCost,
+                persCost = persCost,
+                indSize=indSize,
+                popSize=popSize,
+                cxPb=cxPb,
+                mutPb=mutPb,
+                NGen=NGen,
+            )
+            p = p + t 
+            
+    #prints out the total cost of all depots and deliveries
+    print('\n\nTotalTotalCost: %f' %p)
+
+
+if __name__ == '__main__':
+    random.seed(3)
+    main()
+
+
+#stopping the time
+t1 = time.time()
+total = t1-t0
+
+print ('Time of calculations[sec]: %f' %total)
+
+
+
+#### changes in the core4 ((belong_to)[0][1]
+in case of [belong_to][1]) and flp4 (delete 
+restriction: for i in I:
+        model.addCons(quicksum(y2[i,j] for j in J) == 1.0))
+##### are so marginal, that the will not be printed in here
+####
+#### see the code on the usb-stick for details ####
+
+
+
 
 \end{lstlisting}
 
