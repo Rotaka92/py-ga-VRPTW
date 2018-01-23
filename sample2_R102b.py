@@ -12,7 +12,7 @@ t0 = time.time()
 import random
 
 #loading the GA for the EVRP-TW
-from gavrptw.core3 import gaVRPTW
+from gavrptw.core4 import gaVRPTW
 
 #solving the FLP with this file
 from gavrptw.flp4 import make_data, flp
@@ -91,7 +91,7 @@ def main():
     #### dividing the instance in three sub-instances ####
     #reopening the full instance
     for j in J:  
-        #j = 1        
+        #j = 0     
         jsonFile = os.path.join(jsonDataDir, '%s.json' % instName)
         with open(jsonFile) as f:
             instance = load(f)
@@ -101,7 +101,8 @@ def main():
             for k in J:
                 #k = 0                
                     instance['customer_%d' % i]['get_from']  =\
-                    [round(model.getVal(model.data[0][i-1, k])) for k in J]
+                    [round(model.getVal(model.data[0]\
+                                        [i-1, k])) for k in J]
             
     
     #tupel: which station does the customer belong to and
@@ -113,24 +114,38 @@ def main():
             for k in J:
                  #k = 1
                 if round(model.getVal(model.data[2][i-1,k]),1) == 1.0:             
-                    instance['customer_%d' % i]['belongs_to'].append([k, f[k]])
+                    instance['customer_%d' % i]\
+                    ['belongs_to'].append([k, f[k]])
                     f[k] = f[k]+1
 
     #pop out the customer which does not belong to the explicit station
-    #and filling up the instance ### lot of space for improvement here!!!! #####
+    #and filling up the instance ###
+    #lot of space for improvement here!!!! #####
         for i in range(1,I+1):
-            #i = 5, j = 1
+            #i = 5, j = 2
             
             if len(instance['customer_%d' % i]['belongs_to']) == 2:
                 for p in range(2):
                     #p = 1
-                    if instance['customer_%d' % i]['belongs_to'][p][0] != j:
-                        del instance['customer_%d' % i]['belongs_to'][p]
-                                    #does it count in general?
-                        instance['customer_%d' % i]['demand'] = instance['customer_%d' % i]['get_from'][j]
-                    ### lot of space for improvement here!!!! #####
-                    elif instance['customer_%d' % i]['belongs_to'][0][0] != j and instance['customer_%d' % i]['belongs_to'][1][0] != j:
+                    ### lot of space for improvement here!!!!
+                    #counts only for two different stations, not in\
+                    #case of 3 as mentioned in the paper#####
+                    
+                    if instance['customer_%d' % i]\
+                    ['belongs_to'][0][0] != j\
+                     and instance['customer_%d' % i]\
+                     ['belongs_to'][1][0] != j:
                         instance.pop('customer_%d' % i)
+                        break
+                    elif instance['customer_%d' % i]\
+                    ['belongs_to'][p][0] != j:
+                        del instance['customer_%d' % i]\
+                        ['belongs_to'][p]
+                                    #does it count in general?
+                        instance['customer_%d' % i]['demand'] =\
+                        instance['customer_%d' % i]['get_from'][j]
+                        break
+                    
             elif instance['customer_%d' % i]['belongs_to'][0][0] != j:
                 instance.pop('customer_%d' % i)
             
