@@ -518,7 +518,7 @@ Dies wird auch auf den in dieser Arbeit noch folgenden Abbildungen so gehandhabt
 
 \begin{figure}[h!]
   \begin{center}
-    \includegraphics[width=100mm]{vrp11.jpg}
+    \includegraphics[width=100mm]{vrp11.png}
     \caption{Mögliche, solide Lösung des VRP}  \label{Typen}
     {\footnotesize \textbf{blau:} Fahrzeug 1;  \textbf{orange:} Fahrzeug 2}
   \end{center}
@@ -805,7 +805,7 @@ Die Routen der vier Touren der zweiten Basisstation sind folgende:
          Fahrzeug 1&: 0 - 8 - 0 \\
         Fahrzeug 2&: 0 - 13 - 0\\
         Fahrzeug 3&: 0 - 6 - 5 - 0\\
-        Fahrzeug 2&: 0 - 1 - 4 - 0\\
+        Fahrzeug 2&: 0 - 4 - 7 - 0\\
     \end{aligned}
 \end{equation}\\
 
@@ -829,7 +829,7 @@ Eine ausführliche Sensitivitätsanalyse würde in dieser metaheuristischen Hera
 
 \begin{figure}[h!]
   \begin{center}
-      \includegraphics[width=100mm]{vrp33a.png}
+      \includegraphics[width=100mm]{vrp44.png}
     \caption{Lösung mit genetischem Algorithmus}  \label{Typen}
   \end{center}
 \end{figure}
@@ -837,11 +837,13 @@ Eine ausführliche Sensitivitätsanalyse würde in dieser metaheuristischen Hera
 
 \begin{figure}[h!]
   \begin{center}
-    \includegraphics[width=150mm]{zf1.jpg}
+    \includegraphics[width=150mm]{zf2.jpg}
     \caption{Zeitfenster für die Lösung mit GA}  \label{Typen}
   \end{center}
 \end{figure}
 
+Das Zeitfenster hat sich insofern verändert, dass auf der einen Tour zunächst der 6. Kunde angefahren wird und nicht erst der 5. Kunde.
+Auch wird der Kunde 8 zweimal zum Öffnungszeitpunkt seines Zeitfensters angefahren, einmal von Basisstation zwei und einmal von Basisstation drei.
 
 
 Abschließend ist noch zu erwähnen, dass der Algorithmus in der kurzen Bearbeitungszeit lediglich so weit entwickelt werden konnte, dass er Informationen im Fall von zwei verschiedenen Basisstationen, die sich auf einen Kunden beziehen, weitergeben kann.
