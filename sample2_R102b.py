@@ -70,6 +70,14 @@ def main():
         
     
     [model.getVal(model.data[2][i,k]) for i in range(I) for k in J]
+    
+    
+    
+    x = {}
+    
+    
+    
+    
 
 
 

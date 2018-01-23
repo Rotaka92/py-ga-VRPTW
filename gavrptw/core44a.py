@@ -25,8 +25,8 @@ import math
 # loading the instance for getting informations about customers 
 # and depots
 instName = 'R102a'
-#BASE_DIR = 'C:\\Users\\TapperR\\Desktop\\VRP2\\py-ga-VRPTW'
-BASE_DIR = 'C:\\Users\\Robin\\py-ga-VRPTW'
+BASE_DIR = 'C:\\Users\\TapperR\\Desktop\\VRP2\\py-ga-VRPTW'
+#BASE_DIR = 'C:\\Users\\Robin\\py-ga-VRPTW'
 jsonDataDir = os.path.join(BASE_DIR,'data', 'json')
 jsonFile = os.path.join(jsonDataDir, '%s.json' % instName)
 with open(jsonFile) as f:
@@ -94,11 +94,11 @@ c = {k: c[k] / 60 for k in c.keys()}
 
 # function for creating the route with its subroutes, lists in list
 def ind2route(individual, instance, c):
-    ### Initialize a route
+    ### Initialize a route 
     route = []
     ### set a capacity for the vehicle
-    #vehicleCapacity = instance['vehicle_capacity']
-    vehicleCapacity = 10
+    vehicleCapacity = instance['vehicle_capacity']
+    #vehicleCapacity = 10
     #when the vehicle has to be back 'home' at the latest
     deportDueTime =  instance['deport1']['due_time']  
     ### Initialize a sub-route with start at the depot
